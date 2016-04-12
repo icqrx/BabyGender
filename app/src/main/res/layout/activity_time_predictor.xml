@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.marknguyen.babygenderpredictor.TimePredictorActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_predict" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/text_mom_birthday"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_choose_birthday_screen2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_solar_birthday2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_solar_birthday"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_lunar_birthday2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunar age: "
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/sw_boyorgirl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/text_boyorgirl"
+            android:textOff="@string/text_girl"
+            android:textOn="@string/text_boy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Range of years"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_rangeOfAges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/range_years" />
+        </LinearLayout>
+
+        <materialdesign.views.ButtonRectangle
+            android:id="@+id/btn_time_predictor"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@color/mdtp_dark_gray"
+            android:text="@string/text_predictor" />
+        <TextView
+            android:id="@+id/tv_time_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textStyle="bold" />
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

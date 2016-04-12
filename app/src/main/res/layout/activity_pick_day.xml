@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.marknguyen.babygenderpredictor.PickDayActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_predict" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_boyorgirl"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:src="@drawable/boy1"
+            android:visibility="gone"
+            android:layout_marginBottom="120dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="120dp"
+             />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <materialdesign.views.DonutProgress
+            android:id="@+id/donut_progress"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="120dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="120dp"
+            app:donut_text_size="25dp"
+            custom:donut_finished_stroke_width="15dp"
+            custom:donut_inner_bottom_text_color="#214193"
+            custom:donut_progress="0"
+            custom:donut_unfinished_stroke_width="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="260dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/text_mom_birthday"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_choose_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:src="@android:drawable/ic_menu_my_calendar" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_solar_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_solar_birthday"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_lunar_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_lunar_birthday"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/text_time_get_pregnat"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_choose_timebaby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:src="@android:drawable/ic_menu_my_calendar" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_solar_timebaby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_solar_pregnat"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_lunar_timebaby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_lunar_pregnat"
+            android:textStyle="bold" />
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/fab_margin"-->
+                <!--android:text="@string/text_xxxmonth"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/edt_enter_xxxmonth"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:ems="10"-->
+                <!--android:inputType="number" />-->
+        <!--</LinearLayout>-->
+
+        <materialdesign.views.ButtonRectangle
+            android:id="@+id/btn_gender_predictor"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@color/mdtp_dark_gray"
+            android:text="@string/text_predictor" />
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_info"
+
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="mini" />
+</android.support.design.widget.CoordinatorLayout>

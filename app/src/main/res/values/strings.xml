@@ -1,0 +1,103 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">BabyGender Predictor</string>
+    <string name="action_settings">Settings</string>
+<string name="text_instructor">
+        <![CDATA[
+        <h1>Baby Gender Predictor </h1>
+        <h2>Chinese Method  </h2>
+        <p>1. Trước tiên, người mẹ cần xác định chính xác tuổi âm lịch của mình.</p>
+        <p>2. Sau đó, vợ chồng bạn sẽ tiến hành quan hệ sao cho thời điểm thụ thai chiếu theo đúng bảng ở trên: + là trai, – là gái.</p>
+        <p>Khi ứng dụng cách tính dựa trên bảng lịch vạn này, bạn cũng cần quan tâm đến cả dinh dưỡng và tâm lý nữa nhé. Bởi 2 yếu tố này đều có ảnh hưởng nhất định đến sự thành công của việc sinh con theo ý muốn. </p>
+        ]]>
+    </string>
+    <string name="text_gender_checker">Gender Checker</string>
+    <string name="text_pick_gender">Pick Gender</string>
+    <string name="text_sologan">Baby Gender’s mission is to give couples the power to share and make the world more kids =]]</string>
+    <string name="text_xxxmonth">3. XXX Month</string>
+    <string name="text_mom_birthday">1. Mom\'s Birthday (dd/mm/yyyy)</string>
+
+    <!--<string name="text_mom_birthday">Mom's Birthday</string>-->
+    <!--<string name="text_xxx_month">XXX Month</string>-->
+    <string name="mdtp_date_v1_monthyear">MMMM yyyy</string>
+
+    <!-- Label for button to confirm chosen date or time [CHAR LIMIT=30] -->
+    <string name="mdtp_done_label">Done</string>
+    <string name="mdtp_ok">@android:string/ok</string>
+    <string name="mdtp_cancel">@android:string/cancel</string>
+    <!--
+         Content description for the hour selector in the time picker, which displays
+         selectable hours of the day along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    -->
+    <string name="mdtp_hour_picker_description">Hours circular slider</string>
+    <!--
+         Content description for the minute selector in the time picker, which displays
+         selectable five-minute intervals along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    -->
+    <string name="mdtp_minute_picker_description">Minutes circular slider</string>
+    <!--
+         Content description for the second selector in the time picker, which displays
+         selectable five-second intervals along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    -->
+    <string name="mdtp_second_picker_description">Seconds circular slider</string>
+    <!-- Accessibility announcement for hour circular picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_hours">Select hours</string>
+    <!-- Accessibility announcement for minute circular picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_minutes">Select minutes</string>
+    <!-- Accessibility announcement for second circular picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_seconds">Select seconds</string>
+
+    <!--
+        Content description for the month and day selector in the date picker, which displays
+        a selectable grid of days laid out by month.
+        [CHAR LIMIT=50]
+     -->
+    <string name="mdtp_day_picker_description">Month grid of days</string>
+    <!--
+        Content description for the year selector in the date picker, which displays
+        a scrolling, vertical list of years.
+        [CHAR LIMIT=50]
+     -->
+    <string name="mdtp_year_picker_description">Year list</string>
+    <!-- Accessibility announcement for the day picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_day">Select month and day</string>
+    <!-- Accessibility announcement for the year picker [CHAR LIMIT=NONE] -->
+    <string name="mdtp_select_year">Select year</string>
+    <!-- Accessibility description for the item that is currently selected. -->
+    <string name="mdtp_item_is_selected"><xliff:g example="2013" id="item">%1$s</xliff:g> selected</string>
+    <!-- Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] -->
+    <string name="mdtp_deleted_key"><xliff:g example="4" id="key">%1$s</xliff:g> deleted</string>
+
+    <!-- DO NOT TRANSLATE -->
+    <string name="mdtp_time_placeholder" translatable="false">--</string>
+    <!-- DO NOT TRANSLATE -->
+    <string name="mdtp_time_separator" translatable="false">:</string>
+
+    <!-- DO NOT TRANSLATE -->
+    <string name="mdtp_radial_numbers_typeface" translatable="false">sans-serif</string>
+    <!-- DO NOT TRANSLATE -->
+    <string name="mdtp_sans_serif" translatable="false">sans-serif</string>
+
+    <!-- DO NOT TRANSLATE -->
+    <string name="mdtp_day_of_week_label_typeface" translatable="false">sans-serif</string>
+    <string name="text_solar_birthday">Solar birthday:</string>
+    <string name="text_lunar_birthday">Lunar birthday:</string>
+    <string name="text_predictor">Predictor</string>
+    <string name="text_loading">Loading...</string>
+    <string name="text_time_get_pregnat">2. Time to get pregnat (dd/mm/yyyy)</string>
+    <string name="text_solar_pregnat">Solar pregnat:</string>
+    <string name="text_lunar_pregnat">Lunar pregnat:</string>
+    <string name="text_boy">Boy</string>
+    <string name="text_girl">Girl</string>
+    <string name="text_boyorgirl">2. Boy or Girl? </string>
+
+    <string-array name="range_years">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

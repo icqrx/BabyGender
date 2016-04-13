@@ -1,7 +1,8 @@
 package com.marknguyen.babygenderpredictor;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -10,10 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import date.DatePickerDialog;
+import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
 
-public class TimePredictorActivity extends AppCompatActivity implements
+public class TimePredictorActivity extends FragmentActivity implements
         DatePickerDialog.OnDateSetListener{
     private ButtonRectangle btn_timePredictor;
     private ImageButton btn_chooseBirthday;
@@ -25,6 +27,7 @@ public class TimePredictorActivity extends AppCompatActivity implements
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
     private Switch swBoyorGirl;
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,8 @@ public class TimePredictorActivity extends AppCompatActivity implements
 //                );
 //                dpd.showYearPickerFirst(true);
 //                dpd.show(getFragmentManager(), "Datepickerdialog");
-               // showDialog(333);
+                ((DatePicker) findViewById(R.id.short_date)).setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
+                ((DatePicker) findViewById(R.id.long_date)).setDateFormat(DateFormat.getLongDateFormat(TimePredictorActivity.this));
             }
         });
 

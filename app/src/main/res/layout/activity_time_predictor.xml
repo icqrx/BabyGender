@@ -29,22 +29,27 @@
                 android:text="@string/text_mom_birthday"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/btn_choose_birthday_screen2"
+            <!--<ImageButton-->
+                <!--android:id="@+id/btn_choose_birthday_screen2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="@dimen/fab_margin"-->
+                <!--android:src="@android:drawable/ic_menu_my_calendar"-->
+                <!--android:textStyle="bold" />-->
+            <datepicker.DatePicker
+                android:id="@+id/long_date"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/fab_margin"
-                android:src="@android:drawable/ic_menu_my_calendar"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_solar_birthday2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_solar_birthday"
-            android:textStyle="bold" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_solar_birthday2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/text_solar_birthday"-->
+            <!--android:textStyle="bold" />-->
 
         <TextView
             android:id="@+id/tv_lunar_birthday2"
@@ -97,22 +102,10 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <datepicker.DatePicker
-        android:id="@+id/long_date"
-        style="@android:style/Widget.Holo.Light.Spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <datepicker.DatePicker
-        style="@android:style/Widget.Holo.Light.Spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
-    <datepicker.DatePicker
-        android:id="@+id/short_date"
-        style="@android:style/Widget.Holo.Light.Spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>

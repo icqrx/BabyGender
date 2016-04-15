@@ -10,13 +10,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import date.DatePickerDialog;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
+import sola2lunar.LunarSolarConverter;
+import sola2lunar.Solar;
 
-public class TimePredictorActivity extends FragmentActivity implements
-        DatePickerDialog.OnDateSetListener{
+public class TimePredictorActivity extends FragmentActivity implements DatePicker.OnDateSetListener {
     private ButtonRectangle btn_timePredictor;
     private ImageButton btn_chooseBirthday;
     private TextView tv_solarBirthday;
@@ -28,12 +31,13 @@ public class TimePredictorActivity extends FragmentActivity implements
     private TextView tvTimeResults;
     private Switch swBoyorGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
-
+    private DatePicker pickerSolarBirthday;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_predictor);
-        tv_solarBirthday = (TextView)findViewById(R.id.tv_solar_birthday2);
+//        tv_solarBirthday = (TextView)findViewById(R.id.tv_solar_birthday2);
+        pickerSolarBirthday = (DatePicker)findViewById(R.id.long_date);
         tv_lunarAge = (TextView)findViewById(R.id.tv_lunar_birthday2);
         spRangeOfAge = (Spinner)findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView)findViewById(R.id.tv_time_results);
@@ -47,35 +51,34 @@ public class TimePredictorActivity extends FragmentActivity implements
                     tvTimeResults.setText("");
                     int temp;
                     Boolean isCheck = swBoyorGirl.isChecked();
-                    if(isCheck) temp = 1;
+                    if (isCheck) temp = 1;
                     else temp = 0;
                     getMonthXXX(temp);
-                }catch (Exception e ){
+                } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
-
-
-        btn_chooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday_screen2);
-        btn_chooseBirthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Calendar now = Calendar.getInstance();
-//                DatePickerDialog dpd = DatePickerDialog.newInstance(
-//                        TimePredictorActivity.this,
-//                        now.get(Calendar.YEAR),
-//                        now.get(Calendar.MONTH),
-//                        now.get(Calendar.DAY_OF_MONTH)
-//                );
-//                dpd.showYearPickerFirst(true);
-//                dpd.show(getFragmentManager(), "Datepickerdialog");
-                ((DatePicker) findViewById(R.id.short_date)).setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
-                ((DatePicker) findViewById(R.id.long_date)).setDateFormat(DateFormat.getLongDateFormat(TimePredictorActivity.this));
-            }
-        });
+        pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
+//
+//        btn_chooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday_screen2);
+//        btn_chooseBirthday.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Calendar now = Calendar.getInstance();
+////                DatePickerDialog dpd = DatePickerDialog.newInstance(
+////                        TimePredictorActivity.this,
+////                        now.get(Calendar.YEAR),
+////                        now.get(Calendar.MONTH),
+////                        now.get(Calendar.DAY_OF_MONTH)
+////                );
+////                dpd.showYearPickerFirst(true);
+////                dpd.show(getFragmentManager(), "Datepickerdialog");
+//
+//            }
+//        });
 
     }
 
@@ -113,10 +116,33 @@ public class TimePredictorActivity extends FragmentActivity implements
 //        if(dpd != null) dpd.setOnDateSetListener(this);
 
     }
+
     @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-//        String date = "You picked the following date: "+dayOfMonth+"/"+(++monthOfYear)+"/"+year;
-//        tv_solarBirthday.setText(date);
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Solar solar = new Solar();
+        solar.solarYear = year;
+        solar.solarMonth = monthOfYear;
+        solar.solarDay = dayOfMonth;
+        lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
+
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String[] curr = currentDate.split("-");
+        Solar solar_curr = new Solar();
+        solar_curr.solarDay = Integer.parseInt(curr[2]);
+        solar_curr.solarMonth = Integer.parseInt(curr[1]);
+        solar_curr.solarYear = Integer.parseInt(curr[0]);
+        lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
+
+        ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
+
+        tv_lunarAge.setText("Lunar age: " + ageMom);
+    }
+
+
+//    @Override
+//    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+////        String date = "You picked the following date: "+dayOfMonth+"/"+(++monthOfYear)+"/"+year;
+////        tv_solarBirthday.setText(date);
 //        Solar solar = new Solar();
 //        solar.solarYear = year;
 //        solar.solarMonth = monthOfYear;
@@ -134,7 +160,7 @@ public class TimePredictorActivity extends FragmentActivity implements
 //        ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
 //
 //        tv_lunarAge.setText("Lunar age: " + ageMom);
-    }
+//    }
 
 
 }

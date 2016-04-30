@@ -87,7 +87,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 tmp_month += ", " + i;
             }
             if (i == 12) {
-                tvTimeResults.append("At the ages of " + tmp_age  + " the baby prediction time in months is: -> " + tmp_month.substring(1, tmp_month.length()));
+                tvTimeResults.append("At the ages of " + tmp_age  + " the baby prediction time in months: -> " + tmp_month.substring(1, tmp_month.length()));
                 tvTimeResults.append("\n");
                 tmp_age ++; i = 0; tmp ++; tmp_month = "";
 

@@ -72,70 +72,72 @@ public class PickDayActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_day);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_pick_day);
 
-        tv_solar_birthday = (TextView)findViewById(R.id.tv_solar_birthday);
-        tv_lunar_birthday = (TextView)findViewById(R.id.tv_lunar_birthday);
-        tv_solar_timebaby = (TextView)findViewById(R.id.tv_solar_timebaby);
-        tv_lunar_timebaby = (TextView)findViewById(R.id.tv_lunar_timebaby);
+            tv_solar_birthday = (TextView)findViewById(R.id.tv_solar_birthday);
+            tv_lunar_birthday = (TextView)findViewById(R.id.tv_lunar_birthday);
+            tv_solar_timebaby = (TextView)findViewById(R.id.tv_solar_timebaby);
+            tv_lunar_timebaby = (TextView)findViewById(R.id.tv_lunar_timebaby);
 
-        iv_boyorgirl = (ImageView)findViewById(R.id.iv_boyorgirl);
+            iv_boyorgirl = (ImageView)findViewById(R.id.iv_boyorgirl);
 
 
 
-        btn_predictor = (ButtonRectangle)findViewById(R.id.btn_gender_predictor);
-        btn_predictor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              new AsyncTaskRunner().execute();
-            }
-        });
+            btn_predictor = (ButtonRectangle)findViewById(R.id.btn_gender_predictor);
+            btn_predictor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  new AsyncTaskRunner().execute();
+                }
+            });
 
-//        edt_xxx_month = (EditText)findViewById(R.id.edt_enter_xxxmonth);
-//        edt_xxx_month.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "12")});
+    //        edt_xxx_month = (EditText)findViewById(R.id.edt_enter_xxxmonth);
+    //        edt_xxx_month.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "12")});
+            final int initYear = 1991;
+            btnChooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday);
+            btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Calendar now = Calendar.getInstance();
 
-        btnChooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday);
-        btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        PickDayActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd.showYearPickerFirst(true);
-                dpd.show(getFragmentManager(), "Datepickerdialog");
-            }
-        });
-        btnTimeBaby = (ImageButton)findViewById(R.id.btn_choose_timebaby);
-        btnTimeBaby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd1 = DatePickerDialog.newInstance(
-                        PickDayActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd1.showYearPickerFirst(true);
-                dpd1.show(getFragmentManager(), "Datepickerdialog1");
-            }
-        });
+                    DatePickerDialog dpd = DatePickerDialog.newInstance(
+                            PickDayActivity.this,
+                            initYear,
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+                            //now.get(Calendar.YEAR)
+                    );
+                    dpd.showYearPickerFirst(true);
+                    dpd.show(getFragmentManager(), "Datepickerdialog");
+                }
+            });
+            btnTimeBaby = (ImageButton)findViewById(R.id.btn_choose_timebaby);
+            btnTimeBaby.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Calendar now = Calendar.getInstance();
+                    DatePickerDialog dpd1 = DatePickerDialog.newInstance(
+                            PickDayActivity.this,
+                            now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+                    );
+                    dpd1.showYearPickerFirst(true);
+                    dpd1.show(getFragmentManager(), "Datepickerdialog1");
+                }
+            });
 
-        FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info);
-        fab_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SampleDialogFragment fragment
-                        = SampleDialogFragment.newInstance();
-                fragment.show(getFragmentManager(), "blur_sample");
-                // startActivity(new Intent(MainActivity.this, PickDayActivity.class));
-            }
-        });
+            FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info);
+            fab_info.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SampleDialogFragment fragment
+                            = SampleDialogFragment.newInstance();
+                    fragment.show(getFragmentManager(), "blur_sample");
+                    // startActivity(new Intent(MainActivity.this, PickDayActivity.class));
+                }
+            });
     }
 
     @Override

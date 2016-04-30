@@ -8,14 +8,23 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
+import com.marknguyen.babygenderpredictor.TimePredictorActivity;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+
+import sola2lunar.Lunar;
+import sola2lunar.LunarSolarConverter;
+import sola2lunar.Solar;
 
 public class DatePicker extends EditText implements DatePickerDialog.OnDateSetListener {
 	public interface OnDateSetListener {
 		public void onDateSet(DatePicker view, int year, int month, int day);
 	}
-	
+	private Lunar lunarBirthday;
+	private Lunar lunarCurrent;
 	protected int year;
 	protected int month;
 	protected int day;
@@ -133,12 +142,29 @@ public class DatePicker extends EditText implements DatePickerDialog.OnDateSetLi
 
 	@Override
 	public void onDateSet(android.widget.DatePicker view, int year,
-			int month, int day) {
-		setDate(year, month, day);
+			int monthOfYear, int dayOfMonth) {
+		setDate(year, monthOfYear, dayOfMonth);
 		clearFocus();
-		
-		if(onDateSetListener != null)
-			onDateSetListener.onDateSet(this, year, month, day);
+
+		Solar solar = new Solar();
+		solar.solarYear = year;
+		solar.solarMonth = monthOfYear+1;
+		solar.solarDay = dayOfMonth;
+		lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
+
+		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		String[] curr = currentDate.split("-");
+		Solar solar_curr = new Solar();
+		solar_curr.solarDay = Integer.parseInt(curr[2]);
+		solar_curr.solarMonth = Integer.parseInt(curr[1]);
+		solar_curr.solarYear = Integer.parseInt(curr[0]);
+		lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
+
+		TimePredictorActivity.ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
+
+		TimePredictorActivity.tv_lunarAge.setText("Lunar age: " + TimePredictorActivity.ageMom);
+//		if(onDateSetListener != null)
+//			onDateSetListener.onDateSet(this, year, month, day);
 	}
 	
 	public void updateText() {

@@ -10,23 +10,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
-import sola2lunar.Lunar;
-import sola2lunar.LunarSolarConverter;
-import sola2lunar.Solar;
 
 public class TimePredictorActivity extends FragmentActivity implements DatePicker.OnDateSetListener {
     private ButtonRectangle btn_timePredictor;
     private ImageButton btn_chooseBirthday;
     private TextView tv_solarBirthday;
-    private TextView tv_lunarAge;
-    private Lunar lunarBirthday;
-    private Lunar lunarCurrent;
-    private int ageMom;
+    public static TextView tv_lunarAge;
+
+    public static int ageMom;
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
     private Switch swBoyorGirl;
@@ -93,7 +86,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 tmp_month += ", " + i;
             }
             if (i == 12) {
-                tvTimeResults.append(tmp_age + " Ages: " + "Predict time at months-> " + tmp_month.substring(1, tmp_month.length()));
+                tvTimeResults.append("At the ages of " + tmp_age  + " the baby prediction time in months is: -> " + tmp_month.substring(1, tmp_month.length()));
                 tvTimeResults.append("\n");
                 tmp_age ++; i = 0; tmp ++; tmp_month = "";
 
@@ -119,30 +112,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Solar solar = new Solar();
-        solar.solarYear = year;
-        solar.solarMonth = monthOfYear;
-        solar.solarDay = dayOfMonth;
-        lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
-
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String[] curr = currentDate.split("-");
-        Solar solar_curr = new Solar();
-        solar_curr.solarDay = Integer.parseInt(curr[2]);
-        solar_curr.solarMonth = Integer.parseInt(curr[1]);
-        solar_curr.solarYear = Integer.parseInt(curr[0]);
-        lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
-
-        ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
-
-        tv_lunarAge.setText("Lunar age: " + ageMom);
-    }
-
-
-//    @Override
-//    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-////        String date = "You picked the following date: "+dayOfMonth+"/"+(++monthOfYear)+"/"+year;
-////        tv_solarBirthday.setText(date);
 //        Solar solar = new Solar();
 //        solar.solarYear = year;
 //        solar.solarMonth = monthOfYear;
@@ -161,6 +130,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 //
 //        tv_lunarAge.setText("Lunar age: " + ageMom);
 //    }
-
+        }
 
 }

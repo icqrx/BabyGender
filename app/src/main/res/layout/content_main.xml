@@ -39,7 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
+            android:textColor="@color/mdtp_dark_gray"
             android:text="@string/text_sologan" />
         </LinearLayout>
     </shimmer.ShimmerFrameLayout>
@@ -50,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/fab_margin"
-
+        android:textStyle="bold"
         android:background="@android:color/transparent"
         android:text="@string/text_gender_checker"
 
@@ -64,6 +68,7 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
+        android:textStyle="bold"
         android:background="@android:color/transparent"
         android:text="@string/text_pick_gender" />
 </RelativeLayout>

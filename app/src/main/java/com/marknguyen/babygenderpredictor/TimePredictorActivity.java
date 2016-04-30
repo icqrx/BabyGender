@@ -55,7 +55,8 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         });
 
         pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
-//
+
+//  This version for the new DatePicker Saved! Mark
 //        btn_chooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday_screen2);
 //        btn_chooseBirthday.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -112,24 +113,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//        Solar solar = new Solar();
-//        solar.solarYear = year;
-//        solar.solarMonth = monthOfYear;
-//        solar.solarDay = dayOfMonth;
-//        lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
-//
-//        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-//        String[] curr = currentDate.split("-");
-//        Solar solar_curr = new Solar();
-//        solar_curr.solarDay = Integer.parseInt(curr[2]);
-//        solar_curr.solarMonth = Integer.parseInt(curr[1]);
-//        solar_curr.solarYear = Integer.parseInt(curr[0]);
-//        lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
-//
-//        ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
-//
-//        tv_lunarAge.setText("Lunar age: " + ageMom);
-//    }
+
         }
 
 }

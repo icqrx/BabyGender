@@ -216,6 +216,7 @@ public class PickDayActivity extends AppCompatActivity implements
                 }
             }catch (Exception e){
                 Toast.makeText(getBaseContext(),"Please enter input exactly!", Toast.LENGTH_SHORT).show();
+                donutProgress.setVisibility(View.VISIBLE);
             }
 
         }

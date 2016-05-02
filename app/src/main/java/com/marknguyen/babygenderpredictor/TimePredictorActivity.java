@@ -1,5 +1,7 @@
 package com.marknguyen.babygenderpredictor;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.DateFormat;
@@ -10,6 +12,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.util.Calendar;
+import java.util.Date;
+
 import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 
@@ -18,7 +25,8 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private ImageButton btn_chooseBirthday;
     private TextView tv_solarBirthday;
     public static TextView tv_lunarAge;
-
+    private AlertDialog theDialog;
+    private CalendarPickerView dialogView;
     public static int ageMom;
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
@@ -36,17 +44,26 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         tvTimeResults = (TextView)findViewById(R.id.tv_time_results);
         swBoyorGirl = (Switch)findViewById(R.id.sw_boyorgirl);
 
+        final Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
+
+        final Calendar lastYear = Calendar.getInstance();
+        lastYear.add(Calendar.YEAR, -1);
+
         btn_timePredictor = (ButtonRectangle)findViewById(R.id.btn_time_predictor);
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    tvTimeResults.setText("");
-                    int temp;
-                    Boolean isCheck = swBoyorGirl.isChecked();
-                    if (isCheck) temp = 1;
-                    else temp = 0;
-                    getMonthXXX(temp);
+//                    tvTimeResults.setText("");
+//                    int temp;
+//                    Boolean isCheck = swBoyorGirl.isChecked();
+//                    if (isCheck) temp = 1;
+//                    else temp = 0;
+//                    getMonthXXX(temp);
+                    String title = "Prediction time";
+                    showCalendarInDialog(title, R.layout.dialog_calendarsquare);
+                    dialogView.init(lastYear.getTime(), nextYear.getTime()).withSelectedDate(new Date());
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                 }
@@ -74,6 +91,30 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 //            }
 //        });
 
+    }
+
+    /**
+     * THis fucntion to show the calendar square Mark
+     * @param title
+     * @param layoutResId
+     */
+    private void showCalendarInDialog(String title, int layoutResId) {
+        dialogView = (CalendarPickerView) getLayoutInflater().inflate(layoutResId, null, false);
+        theDialog = new AlertDialog.Builder(this) //
+                .setTitle(title)
+                .setView(dialogView)
+                .setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+        theDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override public void onShow(DialogInterface dialogInterface) {
+                dialogView.fixDialogDimens();
+            }
+        });
+        theDialog.show();
     }
 
     public void getMonthXXX(int temp){

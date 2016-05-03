@@ -227,6 +227,11 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         return range;
     }
 
+    /**
+     * get range XXX
+     * @param temp
+     * @return
+     */
     public List<Map<Date, Date>> getMonthXXX(int temp) {
         List<Map<Date, Date>> listOfRange = new ArrayList<>();
         Map<Date, Date> range = new HashMap<Date, Date>();

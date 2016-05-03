@@ -313,12 +313,10 @@ public class CalendarPickerView extends ListView {
 
             for (Map<Date, Date> rangeOfDate : listRangeOfDates) {
                 Iterator<Map.Entry<Date, Date>> iterator = rangeOfDate.entrySet().iterator();
-//                while (iterator.hasNext()) {
                 Map.Entry<Date, Date> pairs = (Map.Entry<Date, Date>) iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
                 highlightRangeDates(start, end);
-//                }
             }
 
 

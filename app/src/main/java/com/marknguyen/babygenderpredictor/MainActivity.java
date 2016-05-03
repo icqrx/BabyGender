@@ -12,10 +12,11 @@ import android.widget.Toast;
 
 import materialdesign.views.ButtonRectangle;
 import shimmer.ShimmerFrameLayout;
+
 public class MainActivity extends AppCompatActivity {
 
     private ButtonRectangle btn_PickDay;
-    private  ButtonRectangle btn_PickGender;
+    private ButtonRectangle btn_PickGender;
     private int mCurrentPreset = -1;
     private Toast mPresetToast;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_PickDay = (ButtonRectangle)findViewById(R.id.btn_pick_day);
+        btn_PickDay = (ButtonRectangle) findViewById(R.id.btn_pick_day);
         btn_PickDay.setClickable(true);
         btn_PickDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, PickDayActivity.class));
             }
         });
-        btn_PickGender = (ButtonRectangle)findViewById(R.id.btn_pick_gender);
+        btn_PickGender = (ButtonRectangle) findViewById(R.id.btn_pick_gender);
         btn_PickGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mShimmerViewContainer.stopShimmerAnimation();
         super.onPause();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Select one of the shimmer animation presets.
      *
-     * @param preset index of the shimmer animation preset
+     * @param preset    index of the shimmer animation preset
      * @param showToast whether to show a toast describing the preset, or not
      */
     private void selectPreset(int preset, boolean showToast) {

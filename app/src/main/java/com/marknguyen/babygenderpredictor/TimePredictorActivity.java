@@ -111,7 +111,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     Boolean isCheck = swBoyorGirl.isChecked();
                     if (isCheck) temp = 1;
                     else temp = 0;
-                    List<Map<Date,Date>> result  = getMonthXXX(temp);
+                    List<Map<Date, Date>> result = getMonthXXX(temp);
 
                     String title = "Prediction time";
                     showCalendarInDialog(title, R.layout.dialog_calendarsquare);
@@ -225,8 +225,8 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         return range;
     }
 
-    public List<Map<Date,Date>> getMonthXXX(int temp) {
-        List<Map<Date,Date>> listOfRange = new ArrayList<>();
+    public List<Map<Date, Date>> getMonthXXX(int temp) {
+        List<Map<Date, Date>> listOfRange = new ArrayList<>();
         Map<Date, Date> range = new HashMap<Date, Date>();
         String rangeAges = spRangeOfAge.getSelectedItem().toString();
         int tmp_age = ageMom;
@@ -237,7 +237,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         for (int i = 1; i <= 12; i++) {
             if (BoyorGirl(tmp_age, i) == temp) {
                 tmp_month += ", " + i;
-                range =  convertLunarMonthToSolarMonthRange(i, thisYear + tmp_year);
+                range = convertLunarMonthToSolarMonthRange(i, thisYear + tmp_year);
                 listOfRange.add(range);
 
                 // show range of dates by textview
@@ -245,15 +245,16 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 Map.Entry<Date, Date> pairs = (Map.Entry<Date, Date>) iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
-                tmp_solar_month += start.toString() + "-->" + end.toString() + "\n";
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                tmp_solar_month += formatter.format(start.getTime()) + " --> " + formatter.format(end.getTime()) + "\n";
             }
             if (i == 12) {
-                tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in months: -> " + tmp_month.substring(1, tmp_month.length()));
+                tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in the range of dates: \n" + tmp_solar_month);
                 tvTimeResults.append("\n");
                 tmp_age++;
                 i = 0;
                 tmp_year++;
-                tmp_month = "";
+                tmp_solar_month = "";
             }
             if (tmp_year == Integer.parseInt(rangeAges)) {
                 break;
@@ -264,7 +265,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     }
 
     public int BoyorGirl(int ageMom, int lunarPregnatMonth) {
-
         return PickDayActivity.magic_table[ageMom - 18][lunarPregnatMonth - 1];
     }
 
@@ -279,7 +279,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
     }
 
 }

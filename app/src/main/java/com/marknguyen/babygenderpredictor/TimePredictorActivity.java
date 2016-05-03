@@ -121,7 +121,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                             .inMode(CalendarPickerView.SelectionMode.SINGLE)
                                     //.withSelectedDates(dates1)
                                     //.withHighlightedDates(dates)
-                            .withHighlightedRangeDates(result);
+                            .withHighlightedRangeDates(result)
+                            .displayOnly();
+
                     ;
                     // set mode RANGE, input select 2 ngay
                 } catch (Exception e) {

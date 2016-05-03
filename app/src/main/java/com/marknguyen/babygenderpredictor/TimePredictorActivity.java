@@ -159,6 +159,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         //String monthName = obDateFormat.format(dateCal.getTime());
         int maxDay = dateCal.getActualMaximum(Calendar.DAY_OF_MONTH);
         //return "Last date of " + monthName + " :" + maxDay;
+
         return maxDay;
     }
 

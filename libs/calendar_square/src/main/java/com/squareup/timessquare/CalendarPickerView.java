@@ -67,7 +67,7 @@ public class CalendarPickerView extends ListView {
   final List<MonthCellDescriptor> selectedCells = new ArrayList<>();
   final List<MonthCellDescriptor> highlightedCells = new ArrayList<>();
   final List<Calendar> selectedCals = new ArrayList<>();
-  final List<Calendar> highlightedCals = new ArrayList<>();
+  final List<Calendar> highlightedCals = new ArrayList<>(); //cells marked here Mark
   private Locale locale;
   private DateFormat monthNameFormat;
   private DateFormat weekdayNameFormat;

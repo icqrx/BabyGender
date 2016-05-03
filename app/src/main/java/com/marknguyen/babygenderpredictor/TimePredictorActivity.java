@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.squareup.timessquare.CalendarPickerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
@@ -51,6 +53,20 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         lastYear.add(Calendar.YEAR, -1);
         final Date today = new Date();
 
+        int year = 2016;// generate a year between 1900 and 2010;
+        int dayOfYear = 4;// generate a number between 1 and 365 (or 366 if you need to handle leap year);
+                Calendar calendar = Calendar.getInstance();
+        final List<Date> dates = new ArrayList<>();
+        for (int i = 6; i < 10; i++){
+        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.DAY_OF_MONTH, i);
+        final Date randomDoB = calendar.getTime();
+            dates.add(randomDoB);
+        }
+        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.DAY_OF_MONTH, 15);
+        dates.add(calendar.getTime());
+// input zo range bao nhieu nam, input list ngày cần highlight)
 
         btn_timePredictor = (ButtonRectangle)findViewById(R.id.btn_time_predictor);
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +83,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     showCalendarInDialog(title, R.layout.dialog_calendarsquare);
                     dialogView.init(today, nextYear.getTime())
                             .inMode(CalendarPickerView.SelectionMode.RANGE)
-                            .withSelectedDate(new Date());
+                            .withSelectedDate(new Date())
+                            .withHighlightedDates(dates)
+                    ;
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                 }

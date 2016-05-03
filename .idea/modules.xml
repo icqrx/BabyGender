@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BabyGenderPredictor.iml" filepath="$PROJECT_DIR$/BabyGenderPredictor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/calendar_square/calendar_square.iml" filepath="$PROJECT_DIR$/libs/calendar_square/calendar_square.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
     </modules>
   </component>
 </project>

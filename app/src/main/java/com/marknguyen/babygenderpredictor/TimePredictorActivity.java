@@ -49,6 +49,8 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
         final Calendar lastYear = Calendar.getInstance();
         lastYear.add(Calendar.YEAR, -1);
+        final Date today = new Date();
+
 
         btn_timePredictor = (ButtonRectangle)findViewById(R.id.btn_time_predictor);
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +65,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 //                    getMonthXXX(temp);
                     String title = "Prediction time";
                     showCalendarInDialog(title, R.layout.dialog_calendarsquare);
-                    dialogView.init(lastYear.getTime(), nextYear.getTime()).withSelectedDate(new Date());
+                    dialogView.init(today, nextYear.getTime())
+                            .inMode(CalendarPickerView.SelectionMode.RANGE)
+                            .withSelectedDate(new Date());
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                 }

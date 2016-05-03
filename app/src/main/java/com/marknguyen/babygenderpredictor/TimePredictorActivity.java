@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.squareup.timessquare.CalendarPickerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +22,9 @@ import java.util.List;
 
 import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
+import sola2lunar.Lunar;
+import sola2lunar.LunarSolarConverter;
+import sola2lunar.Solar;
 
 public class TimePredictorActivity extends FragmentActivity implements DatePicker.OnDateSetListener {
     private ButtonRectangle btn_timePredictor;
@@ -35,6 +39,8 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private Switch swBoyorGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private DatePicker pickerSolarBirthday;
+    private static int thisYear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         tvTimeResults = (TextView)findViewById(R.id.tv_time_results);
         swBoyorGirl = (Switch)findViewById(R.id.sw_boyorgirl);
 
+
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
 
@@ -56,6 +63,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         int year = 2016;// generate a year between 1900 and 2010;
         int dayOfYear = 4;// generate a number between 1 and 365 (or 366 if you need to handle leap year);
                 Calendar calendar = Calendar.getInstance();
+
+        thisYear =  calendar.get(Calendar.YEAR);
+
         final List<Date> dates = new ArrayList<>();
         for (int i = 6; i < 10; i++){
         calendar.set(Calendar.YEAR, 2016);
@@ -63,7 +73,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         final Date randomDoB = calendar.getTime();
             dates.add(randomDoB);
         }
-        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.YEAR, 1985);
         calendar.set(Calendar.DAY_OF_MONTH, 15);
         dates.add(calendar.getTime());
 // input zo range bao nhieu nam, input list ngày cần highlight)
@@ -73,19 +83,19 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
             @Override
             public void onClick(View v) {
                 try {
-//                    tvTimeResults.setText("");
-//                    int temp;
-//                    Boolean isCheck = swBoyorGirl.isChecked();
-//                    if (isCheck) temp = 1;
-//                    else temp = 0;
-//                    getMonthXXX(temp);
+                    tvTimeResults.setText("");
+                    int temp;
+                    Boolean isCheck = swBoyorGirl.isChecked();
+                    if (isCheck) temp = 1;
+                    else temp = 0;
+                    getMonthXXX(temp);
                     String title = "Prediction time";
-                    showCalendarInDialog(title, R.layout.dialog_calendarsquare);
-                    dialogView.init(today, nextYear.getTime())
-                            .inMode(CalendarPickerView.SelectionMode.RANGE)
-                            .withSelectedDate(new Date())
-                            .withHighlightedDates(dates)
-                    ;
+                    //showCalendarInDialog(title, R.layout.dialog_calendarsquare);
+                    //dialogView.init(today, nextYear.getTime())
+                    //        .inMode(CalendarPickerView.SelectionMode.RANGE)
+                     //       .withSelectedDate(new Date())
+                     //       .withHighlightedDates(dates)
+                    //;
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                 }
@@ -139,26 +149,63 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         theDialog.show();
     }
 
+    public int getLastDate(int month, int year)
+    {
+        Calendar dateCal = Calendar.getInstance();
+        dateCal.set(year, month, 2);
+        //String pattern = "MMMM";
+
+        //SimpleDateFormat obDateFormat = new SimpleDateFormat(pattern);
+        //String monthName = obDateFormat.format(dateCal.getTime());
+        int maxDay = dateCal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        //return "Last date of " + monthName + " :" + maxDay;
+        return maxDay;
+    }
+
+    public String convertLunarMonthToSolarMonthRange(int luMonth, int luYear){
+        String solarMonthRange = "";
+        Lunar luDate = new Lunar();
+        Solar soDate = new Solar();
+
+        luDate.lunarYear = luYear;
+        luDate.lunarMonth = luMonth;
+
+        //Convert first date of a month
+        luDate.lunarDay = 1;
+        soDate = LunarSolarConverter.LunarToSolar(luDate);
+        solarMonthRange += soDate.solarYear + "/" + soDate.solarMonth +"/" + soDate.solarDay + " --> ";
+
+        //Convert last date of a month
+        //Find last date of a month
+        luDate.lunarDay = getLastDate(luMonth, luYear);
+        soDate = LunarSolarConverter.LunarToSolar(luDate);
+        solarMonthRange +=  soDate.solarYear + "/" + soDate.solarMonth + "/" + soDate.solarDay + "\n";
+
+        return solarMonthRange;
+    }
+
     public void getMonthXXX(int temp){
         String rangeAges = spRangeOfAge.getSelectedItem().toString();
         int tmp_age = ageMom;
         int tmp = 0;
         String tmp_month = "";
+        String tmp_solar_month = "";
 
         for(int i = 1; i <= 12; i++){
             if (BoyorGirl(tmp_age,i) == temp){
                 tmp_month += ", " + i;
+                tmp_solar_month += convertLunarMonthToSolarMonthRange(i, thisYear);
             }
             if (i == 12) {
                 tvTimeResults.append("At the ages of " + tmp_age  + " the baby prediction time in months: -> " + tmp_month.substring(1, tmp_month.length()));
                 tvTimeResults.append("\n");
                 tmp_age ++; i = 0; tmp ++; tmp_month = "";
-
             }
             if (tmp == Integer.parseInt(rangeAges)) {
                 break;
             }
         }
+        tvTimeResults.append(tmp_solar_month);
     }
     public int BoyorGirl(int ageMom, int lunarPregnatMonth){
 

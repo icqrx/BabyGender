@@ -1,5 +1,7 @@
 package com.marknguyen.babygenderpredictor;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class PickDayActivity extends AppCompatActivity implements
     private ImageButton btnTimeBaby;
     private ImageView iv_boy;
     private ImageView iv_girl;
+    private ImageView question_mark;
     private Lunar lunarBirthday;
     private Lunar lunarPregnat;
     //Girl = 0 , Boy = 1
@@ -86,20 +89,21 @@ public class PickDayActivity extends AppCompatActivity implements
 
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
+        question_mark = (ImageView)findViewById(R.id.question_mark);
 
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
         btn_predictor.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
                 try {
-                    iv_girl.setVisibility(View.VISIBLE);
-                    iv_boy.setVisibility(View.VISIBLE);
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
                         //iv_boy.setImageResource(R.drawable.girl1);
-                        iv_boy.setAlpha(30);
+                        iv_boy.setImageAlpha(30);
                     } else {
                         //iv_boy.setImageResource(R.drawable.boy1);
-                        iv_girl.setAlpha(30);
+                        iv_girl.setImageAlpha(30);
+                        question_mark.setImageAlpha(30);
                     }
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();

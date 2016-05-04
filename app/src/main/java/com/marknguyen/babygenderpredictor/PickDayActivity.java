@@ -100,9 +100,12 @@ public class PickDayActivity extends AppCompatActivity implements
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
                         //iv_boy.setImageResource(R.drawable.girl1);
                         iv_boy.setImageAlpha(30);
+                        iv_girl.setImageAlpha(255);
+                        question_mark.setImageAlpha(30);
                     } else {
                         //iv_boy.setImageResource(R.drawable.boy1);
                         iv_girl.setImageAlpha(30);
+                        iv_boy.setImageAlpha(255);
                         question_mark.setImageAlpha(30);
                     }
                 } catch (Exception e) {

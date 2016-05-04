@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_PickDay = (ButtonRectangle) findViewById(R.id.btn_pick_day);
         btn_PickDay.setClickable(true);
+        btn_PickDay.getBackground().setAlpha(200);
         btn_PickDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         btn_PickGender = (ButtonRectangle) findViewById(R.id.btn_pick_gender);
+        btn_PickGender.getBackground().setAlpha(200);
         btn_PickGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

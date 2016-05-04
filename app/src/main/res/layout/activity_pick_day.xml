@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -48,11 +48,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="260dp"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -128,33 +129,11 @@
             android:text="@string/text_lunar_pregnat"
             android:textStyle="bold" />
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/fab_margin"-->
-                <!--android:text="@string/text_xxxmonth"-->
-                <!--android:textStyle="bold" />-->
-
-            <!--<EditText-->
-                <!--android:id="@+id/edt_enter_xxxmonth"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:ems="10"-->
-                <!--android:inputType="number" />-->
-        <!--</LinearLayout>-->
-
         <materialdesign.views.ButtonRectangle
+            android:layout_marginTop="10dp"
             android:id="@+id/btn_gender_predictor"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/mdtp_dark_gray"
             android:text="@string/text_predictor" />
     </LinearLayout>
@@ -170,4 +149,4 @@
 
         app:backgroundTint="@color/colorAccent"
         app:fabSize="mini" />
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

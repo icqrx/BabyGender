@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -44,25 +45,32 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private int mYear, mMonth, mDay, mHour, mMinute;
     private DatePicker pickerSolarBirthday;
     private static int thisYear;
-
+    private CalendarPickerView calendarView;
+    private ScrollView scrollText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_predictor);
+
+        scrollText = (ScrollView)findViewById(R.id.scroll_text);
         pickerSolarBirthday = (DatePicker) findViewById(R.id.long_date);
         tv_lunarAge = (TextView) findViewById(R.id.tv_lunar_birthday2);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
         swBoyorGirl = (Switch) findViewById(R.id.sw_boyorgirl);
 
-        final Calendar lastYear = Calendar.getInstance();
-        lastYear.add(Calendar.YEAR, -1);
+        final Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
         final Date today = new Date();
 
 
         Calendar calendar = Calendar.getInstance();
         thisYear = calendar.get(Calendar.YEAR);
 
+        calendarView = (CalendarPickerView) findViewById(R.id.calendar_view_date);
+        calendarView.init(today, nextYear.getTime()) //
+                .inMode(CalendarPickerView.SelectionMode.SINGLE) //
+                .displayOnly();
 //        //Mark Sample Data
 //        int year = 2016;// generate a year between 1900 and 2010;
 //        int dayOfYear = 4;// generate a number between 1 and 365 (or 366 if you need to handle leap year);
@@ -106,6 +114,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
             @Override
             public void onClick(View v) {
                 try {
+                    scrollText.setVisibility(View.VISIBLE);
                     tvTimeResults.setText("");
                     int temp;
                     Boolean isCheck = swBoyorGirl.isChecked();
@@ -113,18 +122,24 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     else temp = 0;
                     List<Map<Date, Date>> result = getMonthXXX(temp);
 
-                    String title = "Prediction time";
-                    showCalendarInDialog(title, R.layout.dialog_calendarsquare);
+                   // String title = "Prediction time";
+                    //showCalendarInDialog(title, R.layout.dialog_calendarsquare);
                     final Calendar nextYear = Calendar.getInstance();
                     nextYear.add(Calendar.YEAR, Integer.parseInt(spRangeOfAge.getSelectedItem().toString()));
-                    dialogView.init(today, nextYear.getTime())
-                            .inMode(CalendarPickerView.SelectionMode.SINGLE)
-                                    //.withSelectedDates(dates1)
-                                    //.withHighlightedDates(dates)
-                            .withHighlightedRangeDates(result)
-                            .displayOnly();
 
-                    ;
+                        calendarView.init(today, nextYear.getTime()) //
+                                .inMode(CalendarPickerView.SelectionMode.SINGLE) //
+                                .withHighlightedRangeDates(result)
+                                .displayOnly();
+
+//                    dialogView.init(today, nextYear.getTime())
+//                            .inMode(CalendarPickerView.SelectionMode.SINGLE)
+//                                    //.withSelectedDates(dates1)
+//                                    //.withHighlightedDates(dates)
+//                            .withHighlightedRangeDates(result)
+//                            .displayOnly();
+//
+//                    ;
                     // set mode RANGE, input select 2 ngay
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
@@ -249,7 +264,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
                 // show range of dates by textview
                 Iterator<Map.Entry<Date, Date>> iterator = range.entrySet().iterator();
-                Map.Entry<Date, Date> pairs = (Map.Entry<Date, Date>) iterator.next();
+                Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

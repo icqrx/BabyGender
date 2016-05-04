@@ -313,13 +313,12 @@ public class CalendarPickerView extends ListView {
 
             for (Map<Date, Date> rangeOfDate : listRangeOfDates) {
                 Iterator<Map.Entry<Date, Date>> iterator = rangeOfDate.entrySet().iterator();
-                Map.Entry<Date, Date> pairs = (Map.Entry<Date, Date>) iterator.next();
+                Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
                 highlightRangeDates(start, end);
             }
-
-
+            validateAndUpdate();
             return this;
         }
 
@@ -500,8 +499,8 @@ public class CalendarPickerView extends ListView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (months.isEmpty()) {
-            throw new IllegalStateException(
-                    "Must have at least one month to display.  Did you forget to call init()?");
+//            throw new IllegalStateException(
+//                    "Must have at least one month to display.  Did you forget to call init()?");
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

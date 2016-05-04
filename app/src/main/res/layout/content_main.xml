@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/wallpaper" />
+        android:src="@drawable/home_predict" />
 
     <shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
@@ -57,6 +57,7 @@
         android:textStyle="bold"
         android:background="@android:color/holo_blue_dark"
         android:text="@string/text_gender_checker"
+
 
         />
     <!--android:background="#1E88E5"-->

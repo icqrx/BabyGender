@@ -21,7 +21,7 @@ import sola2lunar.Solar;
 
 public class DatePicker extends EditText implements DatePickerDialog.OnDateSetListener {
 	public interface OnDateSetListener {
-		public void onDateSet(DatePicker view, int year, int month, int day);
+		void onDateSet(DatePicker view, int year, int month, int day);
 	}
 	private Lunar lunarBirthday;
 	private Lunar lunarCurrent;
@@ -117,7 +117,8 @@ public class DatePicker extends EditText implements DatePickerDialog.OnDateSetLi
 	
 	public void setToday() {
 		Calendar c = Calendar.getInstance();
-		setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+		//setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+		setDate(1991, Calendar.AUGUST, 20);
 	}
 
 	protected void showDatePicker() {
@@ -126,9 +127,13 @@ public class DatePicker extends EditText implements DatePickerDialog.OnDateSetLi
 		datePickerDialog = new DatePickerDialog(
 				getContext(),
 				this,
-				getYear(),
-				getMonth(),
-				getDay());
+				1991,
+				Calendar.AUGUST,
+				20)
+//				getYear(),
+//				getMonth(),
+//				getDay())
+		;
 		
 		if (this.maxDate != -1) {
 			datePickerDialog.getDatePicker().setMaxDate(maxDate);
@@ -169,6 +174,7 @@ public class DatePicker extends EditText implements DatePickerDialog.OnDateSetLi
 	
 	public void updateText() {
 		Calendar cal = new GregorianCalendar(getYear(), getMonth(), getDay());
-		setText(dateFormat.format(cal.getTime()));
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		setText(formatter.format(cal.getTime()));
 	}
 }

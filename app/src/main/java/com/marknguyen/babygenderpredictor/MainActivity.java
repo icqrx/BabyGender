@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        selectPreset(0, false);
+       // selectPreset(0, false);
     }
 
     @Override

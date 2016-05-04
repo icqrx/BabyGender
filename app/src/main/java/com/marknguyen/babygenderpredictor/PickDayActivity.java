@@ -1,6 +1,5 @@
 package com.marknguyen.babygenderpredictor;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +16,11 @@ import java.util.Timer;
 import blurdialogfragment.SampleDialogFragment;
 import date.DatePickerDialog;
 import materialdesign.views.ButtonRectangle;
-//import materialdesign.views.DonutProgress;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
+
+//import materialdesign.views.DonutProgress;
 
 public class PickDayActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
@@ -87,17 +87,26 @@ public class PickDayActivity extends AppCompatActivity implements
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
 
-
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
         btn_predictor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AsyncTaskRunner().execute();
+                try {
+                    iv_girl.setVisibility(View.VISIBLE);
+                    iv_boy.setVisibility(View.VISIBLE);
+                    if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
+                        //iv_boy.setImageResource(R.drawable.girl1);
+                        iv_boy.setAlpha(30);
+                    } else {
+                        //iv_boy.setImageResource(R.drawable.boy1);
+                        iv_girl.setAlpha(30);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        //        edt_xxx_month = (EditText)findViewById(R.id.edt_enter_xxxmonth);
-        //        edt_xxx_month.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "12")});
         final int initYear = 1991;
         btnChooseBirthday = (ImageButton) findViewById(R.id.btn_choose_birthday);
         btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
@@ -112,8 +121,6 @@ public class PickDayActivity extends AppCompatActivity implements
                         now.get(Calendar.DAY_OF_MONTH)
                         //now.get(Calendar.YEAR)
                 );
-                iv_girl.setVisibility(View.INVISIBLE);
-                iv_boy.setVisibility(View.INVISIBLE);
                 dpd.showYearPickerFirst(true);
                 dpd.show(getFragmentManager(), "Datepickerdialog");
             }
@@ -129,8 +136,6 @@ public class PickDayActivity extends AppCompatActivity implements
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
                 );
-                iv_girl.setVisibility(View.INVISIBLE);
-                iv_boy.setVisibility(View.INVISIBLE);
                 dpd1.showYearPickerFirst(true);
                 dpd1.show(getFragmentManager(), "Datepickerdialog1");
             }
@@ -143,9 +148,6 @@ public class PickDayActivity extends AppCompatActivity implements
                 SampleDialogFragment fragment
                         = SampleDialogFragment.newInstance();
                 fragment.show(getFragmentManager(), "blur_sample");
-                iv_girl.setVisibility(View.INVISIBLE);
-                iv_boy.setVisibility(View.INVISIBLE);
-                // startActivity(new Intent(MainActivity.this, PickDayActivity.class));
             }
         });
     }
@@ -190,8 +192,6 @@ public class PickDayActivity extends AppCompatActivity implements
             lunarPregnat = LunarSolarConverter.SolarToLunar(solar);
             tv_lunar_timebaby.setText("Lunar Pregnat Time: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
         }
-
-
     }
 
     public static int checkBoyorGirl(int lunarBirthdayYear, int lunarPregnatYear, int lunarPregnatMonth) {
@@ -201,69 +201,4 @@ public class PickDayActivity extends AppCompatActivity implements
     }
 
 
-    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
-        //private DonutProgress donutProgress;
-        private String resp;
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            return null;
-        }
-
-        /*
-         * (non-Javadoc)
-         *
-         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-         */
-        @Override
-        protected void onPostExecute(String result) {
-            //donutProgress.setVisibility(View.GONE);
-            try {
-                iv_girl.setVisibility(View.VISIBLE);
-                iv_boy.setVisibility(View.VISIBLE);
-                if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-                    //iv_boy.setImageResource(R.drawable.girl1);
-                    iv_boy.setAlpha(30);
-                } else {
-                    //iv_boy.setImageResource(R.drawable.boy1);
-                    iv_girl.setAlpha(30);
-                }
-            } catch (Exception e) {
-                Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();
-                //donutProgress.setVisibility(View.VISIBLE);
-            }
-
-        }
-
-        /*
-         * (non-Javadoc)
-         *
-         * @see android.os.AsyncTask#onPreExecute()
-         */
-        @Override
-        protected void onPreExecute() {
-            // Things to be done before execution of long running operation. For
-            // example showing ProgessDialog
-            //donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
-        }
-
-        /*
-         * (non-Javadoc)
-         *
-         * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-         */
-        @Override
-        protected void onProgressUpdate(String... text) {
-
-           // try {
-                //int i = donutProgress.getProgress() + 5;
-                //Thread.sleep(100);
-                //donutProgress.setProgress(i);
-
-           // } catch (InterruptedException e) {
-           //     e.printStackTrace();
-           // }
-       }
-    }
 }

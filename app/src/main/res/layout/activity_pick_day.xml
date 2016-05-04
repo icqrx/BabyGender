@@ -14,17 +14,22 @@
         android:src="@drawable/homepredict" />
 
     <LinearLayout
-        android:padding="10dp"
+        android:id="@+id/ln"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -49,6 +54,7 @@
             android:id="@+id/tv_solar_birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="@string/text_solar_birthday"
             android:textStyle="bold" />
 
@@ -56,12 +62,14 @@
             android:id="@+id/tv_lunar_birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="@string/text_lunar_birthday"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -84,6 +92,7 @@
             android:id="@+id/tv_solar_timebaby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="@string/text_solar_pregnat"
             android:textStyle="bold" />
 
@@ -91,46 +100,43 @@
             android:id="@+id/tv_lunar_timebaby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="@string/text_lunar_pregnat"
             android:textStyle="bold" />
 
         <materialdesign.views.ButtonRectangle
-            android:layout_marginTop="10dp"
             android:id="@+id/btn_gender_predictor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:background="@color/mdtp_dark_gray"
             android:text="@string/text_predictor" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_boy"
-        android:src="@drawable/boy1"
-        android:visibility="gone"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="bottom|right"
-        android:layout_alignParentBottom="true"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_above="@+id/ln"
         android:layout_alignParentLeft="true"
-        />
+        android:layout_margin="30dp"
+        android:src="@drawable/boy1"
+        android:visibility="visible" />
 
     <ImageView
         android:id="@+id/iv_girl"
-        android:src="@drawable/girl1"
-        android:visibility="gone"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="bottom|right"
-        android:layout_alignParentBottom="true"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_above="@+id/ln"
         android:layout_alignParentRight="true"
-        />
+        android:layout_margin="30dp"
+        android:src="@drawable/girl1"
+        android:visibility="visible" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@android:drawable/ic_dialog_info"
 

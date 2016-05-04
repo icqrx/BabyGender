@@ -47,12 +47,13 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private static int thisYear;
     private CalendarPickerView calendarView;
     private ScrollView scrollText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_predictor);
 
-        scrollText = (ScrollView)findViewById(R.id.scroll_text);
+        scrollText = (ScrollView) findViewById(R.id.scroll_text);
         pickerSolarBirthday = (DatePicker) findViewById(R.id.long_date);
         tv_lunarAge = (TextView) findViewById(R.id.tv_lunar_birthday2);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
@@ -125,15 +126,16 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     else temp = 0;
                     List<Map<Date, Date>> result = getMonthXXX(temp);
 
-                   // String title = "Prediction time";
+                    // String title = "Prediction time";
                     //showCalendarInDialog(title, R.layout.dialog_calendarsquare);
                     final Calendar nextYear = Calendar.getInstance();
                     nextYear.add(Calendar.YEAR, Integer.parseInt(spRangeOfAge.getSelectedItem().toString()));
 
-                        calendarView.init(today, nextYear.getTime()) //
-                                .inMode(CalendarPickerView.SelectionMode.SINGLE) //
-                                .withHighlightedRangeDates(result)
-                                .displayOnly();
+                    //calendarView.setCustomDayView(new SampleDayViewAdapter());
+                    calendarView.init(today, nextYear.getTime()) //
+                            .inMode(CalendarPickerView.SelectionMode.SINGLE) //
+                            .withHighlightedRangeDates(result)
+                            .displayOnly();
 
 //                    dialogView.init(today, nextYear.getTime())
 //                            .inMode(CalendarPickerView.SelectionMode.SINGLE)
@@ -248,6 +250,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
     /**
      * get range XXX
+     *
      * @param temp
      * @return
      */

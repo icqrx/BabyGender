@@ -75,43 +75,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         calendarView.init(today, nextYear.getTime()) //
                 .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                 .displayOnly();
-//        //Mark Sample Data
-//        int year = 2016;// generate a year between 1900 and 2010;
-//        int dayOfYear = 4;// generate a number between 1 and 365 (or 366 if you need to handle leap year);
-//        final List<Date> dates = new ArrayList<>();
-//        final List<Date> dates1 = new ArrayList<>();
-//        for (int i = 6; i < 10; i++) {
-//            calendar.set(Calendar.YEAR, 2016);
-//            calendar.set(Calendar.DAY_OF_MONTH, i);
-//            final Date randomDoB = calendar.getTime();
-//            dates.add(randomDoB);
-//        }
-//        // 0 Jan, 1 Feb
-//        calendar.set(Calendar.YEAR, 2016);
-//        calendar.set(Calendar.MONTH, 4);
-//        calendar.set(Calendar.DAY_OF_MONTH, 15);
-//        dates1.add(calendar.getTime());
-//
-//        calendar.set(Calendar.YEAR, 2016);
-//        calendar.set(Calendar.MONTH, 4);
-//        calendar.set(Calendar.DAY_OF_MONTH, 19);
-//        dates1.add(calendar.getTime());
-//
-//        calendar.set(Calendar.YEAR, 2016);
-//        calendar.set(Calendar.MONTH, 4);
-//        calendar.set(Calendar.DAY_OF_MONTH, 23);
-//        dates1.add(calendar.getTime());
-//
-//        calendar.set(Calendar.YEAR, 2016);
-//        calendar.set(Calendar.MONTH, 5);
-//        calendar.set(Calendar.DAY_OF_MONTH, 19);
-//        dates1.add(calendar.getTime());
-//
-//        final Map<Date, Date> myMap = new HashMap<Date, Date>();
-//        myMap.put(dates1.get(0), dates1.get(1));
-//        myMap.put(dates1.get(2), dates1.get(3));
-
-// input zo range bao nhieu nam, input list ngày cần highlight)
 
         btn_timePredictor = (ButtonRectangle) findViewById(R.id.btn_time_predictor);
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
@@ -126,8 +89,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     else temp = 0;
                     List<Map<Date, Date>> result = getMonthXXX(temp);
 
-                    // String title = "Prediction time";
-                    //showCalendarInDialog(title, R.layout.dialog_calendarsquare);
                     final Calendar nextYear = Calendar.getInstance();
                     nextYear.add(Calendar.YEAR, Integer.parseInt(spRangeOfAge.getSelectedItem().toString()));
 
@@ -137,15 +98,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                             .withHighlightedRangeDates(result)
                             .displayOnly();
 
-//                    dialogView.init(today, nextYear.getTime())
-//                            .inMode(CalendarPickerView.SelectionMode.SINGLE)
-//                                    //.withSelectedDates(dates1)
-//                                    //.withHighlightedDates(dates)
-//                            .withHighlightedRangeDates(result)
-//                            .displayOnly();
-//
-//                    ;
-                    // set mode RANGE, input select 2 ngay
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                     scrollText.setVisibility(View.GONE);
@@ -155,24 +107,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         });
 
         pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
-
-//  This version for the new DatePicker Saved! Mark
-//        btn_chooseBirthday = (ImageButton)findViewById(R.id.btn_choose_birthday_screen2);
-//        btn_chooseBirthday.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Calendar now = Calendar.getInstance();
-////                DatePickerDialog dpd = DatePickerDialog.newInstance(
-////                        TimePredictorActivity.this,
-////                        now.get(Calendar.YEAR),
-////                        now.get(Calendar.MONTH),
-////                        now.get(Calendar.DAY_OF_MONTH)
-////                );
-////                dpd.showYearPickerFirst(true);
-////                dpd.show(getFragmentManager(), "Datepickerdialog");
-//
-//            }
-//        });
 
     }
 
@@ -207,7 +141,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         Calendar dateCal = Calendar.getInstance();
         dateCal.set(year, month, 2);
         int maxDay = dateCal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        //return "Last date of " + monthName + " :" + maxDay;
         return maxDay;
     }
 

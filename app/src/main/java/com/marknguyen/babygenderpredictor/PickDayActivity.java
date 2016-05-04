@@ -5,45 +5,44 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Timer;
 
 import blurdialogfragment.SampleDialogFragment;
 import date.DatePickerDialog;
+import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
 
-//import materialdesign.views.DonutProgress;
-
 public class PickDayActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
 
-    private ImageButton btnChooseBirthday;
+    private DatePicker btnChooseBirthday;
+    private DatePicker btnTimeBaby;
     private TextView tv_solar_birthday;
     private TextView tv_lunar_birthday;
     private TextView tv_solar_timebaby;
     private TextView tv_lunar_timebaby;
-    //    private EditText edt_xxx_month;
     private ButtonRectangle btn_predictor;
     private Timer timer;
-    private ImageButton btnTimeBaby;
+
     private ImageView iv_boy;
     private ImageView iv_girl;
     private ImageView question_mark;
     private Lunar lunarBirthday;
     private Lunar lunarPregnat;
+
     //Girl = 0 , Boy = 1
-// cols = month 1 -> 12
-// rows = age 18 -> 45
+    // cols = month 1 -> 12
+    // rows = age 18 -> 45
     public static int magic_table[][] = new int[][]{
             {0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0},
@@ -89,7 +88,7 @@ public class PickDayActivity extends AppCompatActivity implements
 
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
-        question_mark = (ImageView)findViewById(R.id.question_mark);
+        question_mark = (ImageView) findViewById(R.id.question_mark);
 
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
         btn_predictor.setOnClickListener(new View.OnClickListener() {
@@ -115,38 +114,40 @@ public class PickDayActivity extends AppCompatActivity implements
         });
 
         final int initYear = 1991;
-        btnChooseBirthday = (ImageButton) findViewById(R.id.btn_choose_birthday);
-        btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        PickDayActivity.this,
-                        initYear,
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                        //now.get(Calendar.YEAR)
-                );
-                dpd.showYearPickerFirst(true);
-                dpd.show(getFragmentManager(), "Datepickerdialog");
-            }
-        });
-        btnTimeBaby = (ImageButton) findViewById(R.id.btn_choose_timebaby);
-        btnTimeBaby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd1 = DatePickerDialog.newInstance(
-                        PickDayActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd1.showYearPickerFirst(true);
-                dpd1.show(getFragmentManager(), "Datepickerdialog1");
-            }
-        });
+        btnChooseBirthday = (DatePicker) findViewById(R.id.btn_choose_birthday);
+        btnChooseBirthday.setDateFormat(DateFormat.getDateFormat(PickDayActivity.this));
+//        btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar now = Calendar.getInstance();
+//
+//                DatePickerDialog dpd = DatePickerDialog.newInstance(
+//                        PickDayActivity.this,
+//                        initYear,
+//                        now.get(Calendar.MONTH),
+//                        now.get(Calendar.DAY_OF_MONTH)
+//                        //now.get(Calendar.YEAR)
+//                );
+//                dpd.showYearPickerFirst(true);
+//                dpd.show(getFragmentManager(), "Datepickerdialog");
+//            }
+//        });
+        btnTimeBaby = (DatePicker) findViewById(R.id.btn_choose_timebaby);
+        btnTimeBaby.setDateFormat(DateFormat.getDateFormat(PickDayActivity.this));
+//        btnTimeBaby.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar now = Calendar.getInstance();
+//                DatePickerDialog dpd1 = DatePickerDialog.newInstance(
+//                        PickDayActivity.this,
+//                        now.get(Calendar.YEAR),
+//                        now.get(Calendar.MONTH),
+//                        now.get(Calendar.DAY_OF_MONTH)
+//                );
+//                dpd1.showYearPickerFirst(true);
+//                dpd1.show(getFragmentManager(), "Datepickerdialog1");
+//            }
+//        });
 
         FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info);
         fab_info.setOnClickListener(new View.OnClickListener() {

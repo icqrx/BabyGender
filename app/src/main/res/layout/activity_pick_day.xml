@@ -12,9 +12,6 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/homepredict" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_boyorgirl"
@@ -27,7 +24,6 @@
             android:layout_marginLeft="100dp"
             android:layout_marginRight="120dp"
              />
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -143,7 +139,7 @@
         android:id="@+id/fab_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
+        android:layout_gravity="top|right"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_info"
 

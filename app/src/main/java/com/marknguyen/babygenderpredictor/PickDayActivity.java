@@ -17,7 +17,7 @@ import java.util.Timer;
 import blurdialogfragment.SampleDialogFragment;
 import date.DatePickerDialog;
 import materialdesign.views.ButtonRectangle;
-import materialdesign.views.DonutProgress;
+//import materialdesign.views.DonutProgress;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
@@ -34,7 +34,8 @@ public class PickDayActivity extends AppCompatActivity implements
     private ButtonRectangle btn_predictor;
     private Timer timer;
     private ImageButton btnTimeBaby;
-    private ImageView iv_boyorgirl;
+    private ImageView iv_boy;
+    private ImageView iv_girl;
     private Lunar lunarBirthday;
     private Lunar lunarPregnat;
     //Girl = 0 , Boy = 1
@@ -83,7 +84,8 @@ public class PickDayActivity extends AppCompatActivity implements
         tv_solar_timebaby = (TextView) findViewById(R.id.tv_solar_timebaby);
         tv_lunar_timebaby = (TextView) findViewById(R.id.tv_lunar_timebaby);
 
-        iv_boyorgirl = (ImageView) findViewById(R.id.iv_boyorgirl);
+        iv_boy = (ImageView) findViewById(R.id.iv_boy);
+        iv_girl = (ImageView) findViewById(R.id.iv_girl);
 
 
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
@@ -110,6 +112,8 @@ public class PickDayActivity extends AppCompatActivity implements
                         now.get(Calendar.DAY_OF_MONTH)
                         //now.get(Calendar.YEAR)
                 );
+                iv_girl.setVisibility(View.INVISIBLE);
+                iv_boy.setVisibility(View.INVISIBLE);
                 dpd.showYearPickerFirst(true);
                 dpd.show(getFragmentManager(), "Datepickerdialog");
             }
@@ -125,6 +129,8 @@ public class PickDayActivity extends AppCompatActivity implements
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
                 );
+                iv_girl.setVisibility(View.INVISIBLE);
+                iv_boy.setVisibility(View.INVISIBLE);
                 dpd1.showYearPickerFirst(true);
                 dpd1.show(getFragmentManager(), "Datepickerdialog1");
             }
@@ -137,6 +143,8 @@ public class PickDayActivity extends AppCompatActivity implements
                 SampleDialogFragment fragment
                         = SampleDialogFragment.newInstance();
                 fragment.show(getFragmentManager(), "blur_sample");
+                iv_girl.setVisibility(View.INVISIBLE);
+                iv_boy.setVisibility(View.INVISIBLE);
                 // startActivity(new Intent(MainActivity.this, PickDayActivity.class));
             }
         });
@@ -194,7 +202,7 @@ public class PickDayActivity extends AppCompatActivity implements
 
 
     private class AsyncTaskRunner extends AsyncTask<String, String, String> {
-        private DonutProgress donutProgress;
+        //private DonutProgress donutProgress;
         private String resp;
 
         @Override
@@ -210,18 +218,20 @@ public class PickDayActivity extends AppCompatActivity implements
          */
         @Override
         protected void onPostExecute(String result) {
-            donutProgress.setVisibility(View.GONE);
+            //donutProgress.setVisibility(View.GONE);
             try {
+                iv_girl.setVisibility(View.VISIBLE);
+                iv_boy.setVisibility(View.VISIBLE);
                 if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-                    iv_boyorgirl.setImageResource(R.drawable.girl1);
-                    iv_boyorgirl.setVisibility(View.VISIBLE);
+                    //iv_boy.setImageResource(R.drawable.girl1);
+                    iv_boy.setAlpha(30);
                 } else {
-                    iv_boyorgirl.setImageResource(R.drawable.boy1);
-                    iv_boyorgirl.setVisibility(View.VISIBLE);
+                    //iv_boy.setImageResource(R.drawable.boy1);
+                    iv_girl.setAlpha(30);
                 }
             } catch (Exception e) {
                 Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();
-                donutProgress.setVisibility(View.VISIBLE);
+                //donutProgress.setVisibility(View.VISIBLE);
             }
 
         }
@@ -235,7 +245,7 @@ public class PickDayActivity extends AppCompatActivity implements
         protected void onPreExecute() {
             // Things to be done before execution of long running operation. For
             // example showing ProgessDialog
-            donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
+            //donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         }
 
         /*
@@ -246,14 +256,14 @@ public class PickDayActivity extends AppCompatActivity implements
         @Override
         protected void onProgressUpdate(String... text) {
 
-            try {
-                int i = donutProgress.getProgress() + 5;
-                Thread.sleep(100);
-                donutProgress.setProgress(i);
+           // try {
+                //int i = donutProgress.getProgress() + 5;
+                //Thread.sleep(100);
+                //donutProgress.setProgress(i);
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+           // } catch (InterruptedException e) {
+           //     e.printStackTrace();
+           // }
+       }
     }
 }

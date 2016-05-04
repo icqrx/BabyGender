@@ -14,7 +14,7 @@
     <string name="text_pick_gender">Pregnant Plan</string>
     <string name="text_sologan">Wondering whether you are having a boy or girl?\n Just use it ! </string>
     <string name="text_xxxmonth">3. XXX Month</string>
-    <string name="text_mom_birthday">1. Mom\'s Birthday (dd/mm/yyyy)</string>
+    <string name="text_mom_birthday">Mom\'s Birthday</string>
 
     <!--<string name="text_mom_birthday">Mom's Birthday</string>-->
     <!--<string name="text_xxx_month">XXX Month</string>-->
@@ -84,9 +84,9 @@
     <string name="mdtp_day_of_week_label_typeface" translatable="false">sans-serif</string>
     <string name="text_solar_birthday">Solar birthday:</string>
     <string name="text_lunar_birthday">Lunar birthday:</string>
-    <string name="text_predictor">Predictor</string>
+    <string name="text_predictor">Check</string>
     <string name="text_loading">Loading...</string>
-    <string name="text_time_get_pregnat">2. Time to get pregnat (dd/mm/yyyy)</string>
+    <string name="text_time_get_pregnat">2. When did you get pregnant? </string>
     <string name="text_solar_pregnat">Solar pregnat:</string>
     <string name="text_lunar_pregnat">Lunar pregnat:</string>
     <string name="text_boy">Boy</string>

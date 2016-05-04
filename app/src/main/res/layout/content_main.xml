@@ -55,7 +55,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="@dimen/fab_margin"
         android:textStyle="bold"
-        android:background="@android:color/transparent"
+        android:background="@android:color/holo_blue_dark"
         android:text="@string/text_gender_checker"
 
         />
@@ -69,6 +69,6 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:textStyle="bold"
-        android:background="@android:color/transparent"
+        android:background="@android:color/holo_purple"
         android:text="@string/text_pick_gender" />
 </RelativeLayout>

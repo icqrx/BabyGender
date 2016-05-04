@@ -316,7 +316,15 @@ public class CalendarPickerView extends ListView {
                 Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
-                highlightRangeDates(start, end);
+
+                Calendar s = Calendar.getInstance();
+                s.setTime(start);
+                s.add(Calendar.DATE, -1);
+
+                Calendar e = Calendar.getInstance();
+                e.setTime(end);
+                e.add(Calendar.DATE, 1);
+                highlightRangeDates(s.getTime(), e.getTime());
             }
             validateAndUpdate();
             return this;

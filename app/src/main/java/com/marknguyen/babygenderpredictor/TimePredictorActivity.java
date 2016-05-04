@@ -58,6 +58,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
         swBoyorGirl = (Switch) findViewById(R.id.sw_boyorgirl);
+        // Init
+        tv_lunarAge.setText("Lunar age: 25");
+        ageMom = 25;
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -143,6 +146,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     // set mode RANGE, input select 2 ngay
                 } catch (Exception e) {
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
+                    scrollText.setVisibility(View.GONE);
                 }
 
             }
@@ -271,7 +275,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 tmp_solar_month += formatter.format(start.getTime()) + " --> " + formatter.format(end.getTime()) + "\n";
             }
             if (i == 12) {
-                tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in the range of dates: \n" + tmp_solar_month);
+                tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in the range of dates (dd/mm/yyyy): \n" + tmp_solar_month);
                 tvTimeResults.append("\n");
                 tmp_age++;
                 i = 0;

@@ -10,9 +10,9 @@
         <p>Khi ứng dụng cách tính dựa trên bảng lịch vạn này, bạn cũng cần quan tâm đến cả dinh dưỡng và tâm lý nữa nhé. Bởi 2 yếu tố này đều có ảnh hưởng nhất định đến sự thành công của việc sinh con theo ý muốn. </p>
         ]]>
     </string>
-    <string name="text_gender_checker">Gender Checker</string>
-    <string name="text_pick_gender">Pick Gender</string>
-    <string name="text_sologan">Baby Gender’s mission is to give couples the power to make the world more kids =]]</string>
+    <string name="text_gender_checker">Boy/Girl Test</string>
+    <string name="text_pick_gender">Pregnant Plan</string>
+    <string name="text_sologan">Wondering whether you are having a boy or girl?\n Just use it ! </string>
     <string name="text_xxxmonth">3. XXX Month</string>
     <string name="text_mom_birthday">1. Mom\'s Birthday (dd/mm/yyyy)</string>
 

@@ -1,32 +1,33 @@
 package com.marknguyen.babygenderpredictor;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Timer;
 
 import blurdialogfragment.SampleDialogFragment;
-import date.DatePickerDialog;
-import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
 
-public class PickDayActivity extends AppCompatActivity implements
-        DatePickerDialog.OnDateSetListener {
+public class PickDayActivity extends AppCompatActivity {
 
-    private DatePicker btnChooseBirthday;
-    private DatePicker btnTimeBaby;
+    private EditText btnChooseBirthday;
+    private EditText btnTimeBaby;
     private TextView tv_solar_birthday;
     private TextView tv_lunar_birthday;
     private TextView tv_solar_timebaby;
@@ -90,6 +91,7 @@ public class PickDayActivity extends AppCompatActivity implements
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
         question_mark = (ImageView) findViewById(R.id.question_mark);
 
+        // Button to predict the gender of baby
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
         btn_predictor.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -97,12 +99,10 @@ public class PickDayActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 try {
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-                        //iv_boy.setImageResource(R.drawable.girl1);
                         iv_boy.setImageAlpha(30);
                         iv_girl.setImageAlpha(255);
                         question_mark.setImageAlpha(30);
                     } else {
-                        //iv_boy.setImageResource(R.drawable.boy1);
                         iv_girl.setImageAlpha(30);
                         iv_boy.setImageAlpha(255);
                         question_mark.setImageAlpha(30);
@@ -113,41 +113,54 @@ public class PickDayActivity extends AppCompatActivity implements
             }
         });
 
-        final int initYear = 1991;
-        btnChooseBirthday = (DatePicker) findViewById(R.id.btn_choose_birthday);
-        btnChooseBirthday.setDateFormat(DateFormat.getDateFormat(PickDayActivity.this));
-//        btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar now = Calendar.getInstance();
-//
-//                DatePickerDialog dpd = DatePickerDialog.newInstance(
-//                        PickDayActivity.this,
-//                        initYear,
-//                        now.get(Calendar.MONTH),
-//                        now.get(Calendar.DAY_OF_MONTH)
-//                        //now.get(Calendar.YEAR)
-//                );
-//                dpd.showYearPickerFirst(true);
-//                dpd.show(getFragmentManager(), "Datepickerdialog");
-//            }
-//        });
-        btnTimeBaby = (DatePicker) findViewById(R.id.btn_choose_timebaby);
-        btnTimeBaby.setDateFormat(DateFormat.getDateFormat(PickDayActivity.this));
-//        btnTimeBaby.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Calendar now = Calendar.getInstance();
-//                DatePickerDialog dpd1 = DatePickerDialog.newInstance(
-//                        PickDayActivity.this,
-//                        now.get(Calendar.YEAR),
-//                        now.get(Calendar.MONTH),
-//                        now.get(Calendar.DAY_OF_MONTH)
-//                );
-//                dpd1.showYearPickerFirst(true);
-//                dpd1.show(getFragmentManager(), "Datepickerdialog1");
-//            }
-//        });
+        final Calendar myCalendar = Calendar.getInstance();
+        // Listener of choose mom birthday button
+        final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(0, myCalendar);
+                updateResult(0, year, monthOfYear, dayOfMonth);
+            }
+
+        };
+        // Listener of choose pregnant time
+        final DatePickerDialog.OnDateSetListener choosePregnant = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(1, myCalendar);
+                updateResult(1, year, monthOfYear, dayOfMonth);
+            }
+
+        };
+
+        btnChooseBirthday = (EditText) findViewById(R.id.btn_choose_birthday);
+        btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(PickDayActivity.this, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+        btnTimeBaby = (EditText) findViewById(R.id.btn_choose_timebaby);
+        btnTimeBaby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(PickDayActivity.this, choosePregnant, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
 
         FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info);
         fab_info.setOnClickListener(new View.OnClickListener() {
@@ -160,53 +173,69 @@ public class PickDayActivity extends AppCompatActivity implements
         });
     }
 
+    /**
+     * @param year
+     * @param monthOfYear
+     * @param dayOfMonth
+     */
+    public void updateResult(int flag, int year, int monthOfYear, int dayOfMonth) {
+        switch (flag) {
+            case 0: {
+                String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
+                tv_solar_birthday.setText(date);
+                Solar solar = new Solar();
+                solar.solarYear = year;
+                solar.solarMonth = monthOfYear;
+                solar.solarDay = dayOfMonth;
+                lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
+                tv_lunar_birthday.setText("Lunar birthday: " + lunarBirthday.lunarDay + "/" + lunarBirthday.lunarMonth + "/" + lunarBirthday.lunarYear);
+                break;
+            }
+            case 1: {
+                String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
+                tv_solar_timebaby.setText(date);
+                Solar solar = new Solar();
+                solar.solarYear = year;
+                solar.solarMonth = monthOfYear;
+                solar.solarDay = dayOfMonth;
+                lunarPregnat = LunarSolarConverter.SolarToLunar(solar);
+                tv_lunar_timebaby.setText("Lunar Pregnat Time: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
+                break;
+            }
+        }
+
+    }
+
+    /**
+     * Update the label
+     *
+     * @param myCalendar
+     */
+    public void updateLabel(int flag, Calendar myCalendar) {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        switch (flag){
+            case 0:  btnChooseBirthday.setText(sdf.format(myCalendar.getTime())); break;
+            case 1:  btnTimeBaby.setText(sdf.format(myCalendar.getTime())); break;
+        }
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        DatePickerDialog dpd = (DatePickerDialog) getFragmentManager().findFragmentByTag("Datepickerdialog");
-
-        if (dpd != null) dpd.setOnDateSetListener(this);
-
-        DatePickerDialog dpd1 = (DatePickerDialog) getFragmentManager().findFragmentByTag("Datepickerdialog1");
-
-        if (dpd1 != null) dpd1.setOnDateSetListener(this);
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-
-        if (view.getFragmentManager().findFragmentByTag("Datepickerdialog") != null) {
-            String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
-            tv_solar_birthday.setText(date);
-            Solar solar = new Solar();
-            solar.solarYear = year;
-            solar.solarMonth = monthOfYear;
-            solar.solarDay = dayOfMonth;
-            lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
-            tv_lunar_birthday.setText("Lunar birthday: " + lunarBirthday.lunarDay + "/" + lunarBirthday.lunarMonth + "/" + lunarBirthday.lunarYear);
-        }
-        if (view.getFragmentManager().findFragmentByTag("Datepickerdialog1") != null) {
-            String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
-            tv_solar_timebaby.setText(date);
-            Solar solar = new Solar();
-            solar.solarYear = year;
-            solar.solarMonth = monthOfYear;
-            solar.solarDay = dayOfMonth;
-            lunarPregnat = LunarSolarConverter.SolarToLunar(solar);
-            tv_lunar_timebaby.setText("Lunar Pregnat Time: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
-        }
-    }
-
+    /**
+     * Check Baby's Gender
+     * @param lunarBirthdayYear
+     * @param lunarPregnatYear
+     * @param lunarPregnatMonth
+     * @return
+     */
     public static int checkBoyorGirl(int lunarBirthdayYear, int lunarPregnatYear, int lunarPregnatMonth) {
         int ageMom = lunarPregnatYear - lunarBirthdayYear;
-
         return magic_table[ageMom - 18][lunarPregnatMonth - 1];
     }
-
 
 }

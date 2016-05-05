@@ -39,21 +39,13 @@
                 android:text="@string/text_mom_birthday"
                 android:textStyle="bold" />
 
-            <datepicker.DatePicker
+            <EditText
                 android:id="@+id/btn_choose_birthday"
                 style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/fab_margin" />
-            <!--<ImageButton-->
-            <!--android:id="@+id/btn_choose_birthday"-->
-            <!--android:layout_width="wrap_content"-->
-
-            <!--android:layout_height="wrap_content"-->
-
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginLeft="@dimen/fab_margin"-->
-            <!--android:src="@android:drawable/ic_menu_my_calendar" />-->
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:focusable="false" />
         </LinearLayout>
 
         <TextView
@@ -85,19 +77,13 @@
                 android:text="@string/text_time_get_pregnat"
                 android:textStyle="bold" />
 
-            <datepicker.DatePicker
+            <EditText
                 android:id="@+id/btn_choose_timebaby"
                 style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/fab_margin" />
-            <!--<ImageButton-->
-            <!--android:id="@+id/btn_choose_timebaby"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginLeft="@dimen/fab_margin"-->
-            <!--android:src="@android:drawable/ic_menu_my_calendar" />-->
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:focusable="false" />
         </LinearLayout>
 
         <TextView
@@ -122,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:background="@color/mdtp_dark_gray"
-            android:text="@string/text_predictor" />
+            android:text="@string/text_gender_check" />
     </LinearLayout>
 
     <LinearLayout

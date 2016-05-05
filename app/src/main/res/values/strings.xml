@@ -84,7 +84,8 @@
     <string name="mdtp_day_of_week_label_typeface" translatable="false">sans-serif</string>
     <string name="text_solar_birthday">Solar birthday:</string>
     <string name="text_lunar_birthday">Lunar birthday:</string>
-    <string name="text_predictor">Gender Check</string>
+    <string name="text_gender_check">Gender Check</string>
+    <string name="text_predictor">Show Plan</string>
     <string name="text_loading">Loading...</string>
     <string name="text_time_get_pregnat">2. When did you get pregnant? </string>
     <string name="text_solar_pregnat">Solar pregnant:</string>

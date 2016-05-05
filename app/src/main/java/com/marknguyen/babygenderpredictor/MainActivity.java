@@ -1,6 +1,8 @@
 package com.marknguyen.babygenderpredictor;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.List;
 
 import materialdesign.views.ButtonRectangle;
 import shimmer.ShimmerFrameLayout;
@@ -32,14 +36,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Send feedback to our via Email xxx.com", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"xxx@gmail.com"});
-                i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Feedback");
-                i.putExtra(android.content.Intent.EXTRA_TEXT, "We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
-                startActivity(Intent.createChooser(i, "Send email"));
+                shareToGMail(new String[]{"xxx@gmail.com"},"Feedback","We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
             }
         });
 
@@ -127,5 +124,29 @@ public class MainActivity extends AppCompatActivity {
         if (mPresetToast != null) {
             mPresetToast.cancel();
         }
+    }
+
+    /**
+     *
+     * @param email
+     * @param subject
+     * @param content
+     */
+    public void shareToGMail(String[] email, String subject, String content) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
+        final PackageManager pm = getApplication().getPackageManager();
+        final List<ResolveInfo> matches = pm.queryIntentActivities(emailIntent, 0);
+        ResolveInfo best = null;
+        for(final ResolveInfo info : matches)
+            if (info.activityInfo.packageName.endsWith(".gm") || info.activityInfo.name.toLowerCase().contains("gmail"))
+                best = info;
+        if (best != null)
+            emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
+        getApplication().startActivity(emailIntent);
     }
 }

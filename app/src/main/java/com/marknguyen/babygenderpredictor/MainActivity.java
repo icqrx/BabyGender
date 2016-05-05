@@ -3,7 +3,6 @@ package com.marknguyen.babygenderpredictor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,8 +32,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Send feedback to our via Email xxx.com", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Send feedback to our via Email xxx.com", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"xxx@gmail.com"});
+                i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Feedback");
+                i.putExtra(android.content.Intent.EXTRA_TEXT, "We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
+                startActivity(Intent.createChooser(i, "Send email"));
             }
         });
 

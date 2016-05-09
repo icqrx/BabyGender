@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/homepredict" />
+        android:src="@drawable/wallpaper6" />
 
     <ScrollView
         android:id="@+id/scroll_text"
@@ -88,21 +88,31 @@
         <!--android:text="@string/text_solar_birthday"-->
         <!--android:textStyle="bold" />-->
 
-        <TextView
-            android:id="@+id/tv_lunar_birthday2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lunar age: "
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <Switch
-            android:id="@+id/sw_boyorgirl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/text_boyorgirl"
-            android:textOff="@string/text_girl"
-            android:textOn="@string/text_boy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Expected Gender Baby:"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boy"
+                android:id="@+id/cbBoy"
+                android:drawSelectorOnTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Girl"
+                android:id="@+id/cbGirl"
+                android:drawSelectorOnTop="true" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

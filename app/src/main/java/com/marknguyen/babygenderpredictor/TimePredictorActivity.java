@@ -2,10 +2,13 @@ package com.marknguyen.babygenderpredictor;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -13,6 +16,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.timessquare.CalendarPickerView;
 
 import java.text.ParseException;
@@ -41,12 +47,20 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     public static int ageMom;
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
-    private Switch swBoyorGirl;
+    //private Switch swBoyorGirl;
+    private CheckBox cbBoy;
+    private CheckBox cbGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private DatePicker pickerSolarBirthday;
     private static int thisYear;
     private CalendarPickerView calendarView;
     private ScrollView scrollText;
+    private boolean isExpectedBoy;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +69,16 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
         scrollText = (ScrollView) findViewById(R.id.scroll_text);
         pickerSolarBirthday = (DatePicker) findViewById(R.id.long_date);
-        tv_lunarAge = (TextView) findViewById(R.id.tv_lunar_birthday2);
+        //tv_lunarAge = (TextView) findViewById(R.id.tv_lunar_birthday2);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
-        swBoyorGirl = (Switch) findViewById(R.id.sw_boyorgirl);
+        //swBoyorGirl = (Switch) findViewById(R.id.sw_boyorgirl);
+        cbBoy = (CheckBox) findViewById(R.id.cbBoy);
+        cbGirl = (CheckBox) findViewById(R.id.cbGirl);
         // Init
-        tv_lunarAge.setText("Lunar age: 25");
+        //tv_lunarAge.setText("Lunar age: 25");
         ageMom = 25;
+        isExpectedBoy = true;
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -77,6 +94,22 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 .displayOnly();
 
         btn_timePredictor = (ButtonRectangle) findViewById(R.id.btn_time_predictor);
+        cbBoy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isExpectedBoy = true;
+                //Uncheck cbGirl
+                cbGirl.setChecked(false);
+            }
+        });
+        cbGirl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isExpectedBoy = false;
+                //Uncheck cbBoy
+                cbBoy.setChecked(false);
+            }
+        });
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,9 +117,11 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     scrollText.setVisibility(View.VISIBLE);
                     tvTimeResults.setText("");
                     int temp;
-                    Boolean isCheck = swBoyorGirl.isChecked();
-                    if (isCheck) temp = 1;
-                    else temp = 0;
+                    //Boolean isCheck = swBoyorGirl.isChecked();
+                    if (isExpectedBoy)
+                        temp = 0;
+                    else
+                        temp = 1;
                     List<Map<Date, Date>> result = getMonthXXX(temp);
 
                     final Calendar nextYear = Calendar.getInstance();
@@ -108,6 +143,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
         pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     /**
@@ -243,4 +281,43 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "TimePredictor Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.marknguyen.babygenderpredictor/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "TimePredictor Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.marknguyen.babygenderpredictor/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }

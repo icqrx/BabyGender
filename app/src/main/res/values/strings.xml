@@ -93,6 +93,7 @@
     <string name="text_boy">Boy</string>
     <string name="text_girl">Girl</string>
     <string name="text_boyorgirl">2. Boy or Girl? </string>
+    <string name="text_gender_check_results">Please input the mom\'s birthday and pregnant time!</string>
 
     <string-array name="range_years">
         <item>1</item>

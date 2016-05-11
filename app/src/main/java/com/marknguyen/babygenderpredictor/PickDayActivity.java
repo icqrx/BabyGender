@@ -20,11 +20,15 @@ import java.util.Timer;
 
 import blurdialogfragment.SampleDialogFragment;
 import materialdesign.views.ButtonRectangle;
+import shimmer.ShimmerFrameLayout;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
 
 public class PickDayActivity extends AppCompatActivity {
+
+    private int mCurrentPreset = -1;
+    private Toast mPresetToast;
 
     private EditText btnChooseBirthday;
     private EditText btnTimeBaby;
@@ -32,8 +36,10 @@ public class PickDayActivity extends AppCompatActivity {
     private TextView tv_lunar_birthday;
     private TextView tv_solar_timebaby;
     private TextView tv_lunar_timebaby;
+    private TextView tvGenderCheckResults;
     private ButtonRectangle btn_predictor;
     private Timer timer;
+    private ShimmerFrameLayout mShimmerViewContainer;
 
     private ImageView iv_boy;
     private ImageView iv_girl;
@@ -82,10 +88,13 @@ public class PickDayActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_pick_day);
 
+        mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+
         tv_solar_birthday = (TextView) findViewById(R.id.tv_solar_birthday);
         tv_lunar_birthday = (TextView) findViewById(R.id.tv_lunar_birthday);
         tv_solar_timebaby = (TextView) findViewById(R.id.tv_solar_timebaby);
         tv_lunar_timebaby = (TextView) findViewById(R.id.tv_lunar_timebaby);
+        tvGenderCheckResults = (TextView)findViewById(R.id.text_check_gender_results);
 
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
@@ -99,19 +108,18 @@ public class PickDayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-//                        iv_boy.setImageAlpha(30);
-//                        iv_girl.setImageAlpha(255);
-//                        question_mark.setImageAlpha(30);
                         iv_girl.setVisibility(View.VISIBLE);
                         iv_boy.setVisibility(View.GONE);
                         question_mark.setVisibility(View.GONE);
+                        tvGenderCheckResults.setText("Congratulations! You might be got a little girl!");
+                        mShimmerViewContainer.startShimmerAnimation();
                     } else {
                         iv_boy.setVisibility(View.VISIBLE);
                         iv_girl.setVisibility(View.GONE);
                         question_mark.setVisibility(View.GONE);
-//                        iv_girl.setImageAlpha(30);
-//                        iv_boy.setImageAlpha(255);
-//                        question_mark.setImageAlpha(30);
+                        tvGenderCheckResults.setText("Congratulations! You might be got a little boy!");
+                        mShimmerViewContainer.startShimmerAnimation();
+
 
                     }
                 } catch (Exception e) {
@@ -181,6 +189,30 @@ public class PickDayActivity extends AppCompatActivity {
     }
 
     /**
+     * Select one of the shimmer animation presets.
+     *
+     * @param preset    index of the shimmer animation preset
+     * @param showToast whether to show a toast describing the preset, or not
+     */
+    private void selectPreset(int preset, boolean showToast) {
+        if (mCurrentPreset == preset) {
+            return;
+        }
+        mCurrentPreset = preset;
+
+        // Save the state of the animation
+        boolean isPlaying = mShimmerViewContainer.isAnimationStarted();
+
+        // Reset all parameters of the shimmer animation
+        mShimmerViewContainer.useDefaults();
+
+        // If a toast is already showing, hide it
+        if (mPresetToast != null) {
+            mPresetToast.cancel();
+        }
+    }
+
+    /**
      * @param year
      * @param monthOfYear
      * @param dayOfMonth
@@ -221,11 +253,34 @@ public class PickDayActivity extends AppCompatActivity {
     public void updateLabel(int flag, Calendar myCalendar) {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-        switch (flag){
-            case 0:  btnChooseBirthday.setText(sdf.format(myCalendar.getTime())); break;
-            case 1:  btnTimeBaby.setText(sdf.format(myCalendar.getTime())); break;
+        switch (flag) {
+            case 0:
+                btnChooseBirthday.setText(sdf.format(myCalendar.getTime()));
+                break;
+            case 1:
+                btnTimeBaby.setText(sdf.format(myCalendar.getTime()));
+                break;
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+         selectPreset(0, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mShimmerViewContainer.stopShimmerAnimation();
     }
 
     @Override
@@ -235,6 +290,7 @@ public class PickDayActivity extends AppCompatActivity {
 
     /**
      * Check Baby's Gender
+     *
      * @param lunarBirthdayYear
      * @param lunarPregnatYear
      * @param lunarPregnatMonth

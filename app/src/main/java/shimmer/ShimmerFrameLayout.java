@@ -299,8 +299,9 @@ public class ShimmerFrameLayout extends FrameLayout {
    * Get the alpha currently used to render the base view i.e. the unhighlighted view over which the highlight is drawn.
    *
    * @return Alpha (opacity) of the base view
+   * @param v
    */
-  public float getBaseAlpha() {
+  public float getBaseAlpha(float v) {
     return (float) mAlphaPaint.getAlpha() / 0xff;
   }
 

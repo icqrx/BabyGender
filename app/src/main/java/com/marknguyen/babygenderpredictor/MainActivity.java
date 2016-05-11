@@ -10,21 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
 import java.util.List;
 
 import materialdesign.views.ButtonRectangle;
-import shimmer.ShimmerFrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private ButtonRectangle btn_PickDay;
     private ButtonRectangle btn_PickGender;
-    private int mCurrentPreset = -1;
-    private Toast mPresetToast;
 
-    private ShimmerFrameLayout mShimmerViewContainer;
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+
     }
 
     @Override
@@ -71,23 +68,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//       // selectPreset(0, false);
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-////        mShimmerViewContainer.startShimmerAnimation();
-//    }
 
-//    @Override
-//    public void onPause() {
-////        mShimmerViewContainer.stopShimmerAnimation();
-//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -104,29 +85,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Select one of the shimmer animation presets.
-     *
-     * @param preset    index of the shimmer animation preset
-     * @param showToast whether to show a toast describing the preset, or not
-     */
-    private void selectPreset(int preset, boolean showToast) {
-        if (mCurrentPreset == preset) {
-            return;
-        }
-        mCurrentPreset = preset;
-
-        // Save the state of the animation
-        boolean isPlaying = mShimmerViewContainer.isAnimationStarted();
-
-        // Reset all parameters of the shimmer animation
-        mShimmerViewContainer.useDefaults();
-
-        // If a toast is already showing, hide it
-        if (mPresetToast != null) {
-            mPresetToast.cancel();
-        }
-    }
 
     /**
      *

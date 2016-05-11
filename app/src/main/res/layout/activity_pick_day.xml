@@ -13,22 +13,33 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/text_check_gender_results"
+    <LinearLayout
+        android:id="@+id/ln_text_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fab_info"
-        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_below="@+id/fab_info">
+        <!--<ImageView-->
+            <!--android:padding="@dimen/fab_margin"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/congrat"/>-->
+        <TextView
+            android:id="@+id/text_check_gender_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_gender_check_results" />
+    </LinearLayout>
 
-        android:padding="@dimen/fab_margin"
-        android:text="@string/text_gender_check_results" />
 
     <shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ln"
-        android:layout_below="@+id/text_check_gender_results"
+        android:layout_below="@+id/ln_text_results"
         shimmer:duration="1500">
 
 

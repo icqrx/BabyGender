@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+//        mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
     }
 
     @Override
@@ -68,24 +71,23 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//       // selectPreset(0, false);
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+////        mShimmerViewContainer.startShimmerAnimation();
+//    }
 
-       // selectPreset(0, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mShimmerViewContainer.startShimmerAnimation();
-    }
-
-    @Override
-    public void onPause() {
-        mShimmerViewContainer.stopShimmerAnimation();
-        super.onPause();
-    }
+//    @Override
+//    public void onPause() {
+////        mShimmerViewContainer.stopShimmerAnimation();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

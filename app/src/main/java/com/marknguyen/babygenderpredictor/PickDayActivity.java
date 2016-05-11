@@ -99,13 +99,20 @@ public class PickDayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-                        iv_boy.setImageAlpha(30);
-                        iv_girl.setImageAlpha(255);
-                        question_mark.setImageAlpha(30);
+//                        iv_boy.setImageAlpha(30);
+//                        iv_girl.setImageAlpha(255);
+//                        question_mark.setImageAlpha(30);
+                        iv_girl.setVisibility(View.VISIBLE);
+                        iv_boy.setVisibility(View.GONE);
+                        question_mark.setVisibility(View.GONE);
                     } else {
-                        iv_girl.setImageAlpha(30);
-                        iv_boy.setImageAlpha(255);
-                        question_mark.setImageAlpha(30);
+                        iv_boy.setVisibility(View.VISIBLE);
+                        iv_girl.setVisibility(View.GONE);
+                        question_mark.setVisibility(View.GONE);
+//                        iv_girl.setImageAlpha(30);
+//                        iv_boy.setImageAlpha(255);
+//                        question_mark.setImageAlpha(30);
+
                     }
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();

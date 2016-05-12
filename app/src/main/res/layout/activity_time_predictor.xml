@@ -8,8 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        />
+        android:scaleType="centerCrop" />
 
     <ScrollView
         android:id="@+id/scroll_text"
@@ -31,11 +30,11 @@
         android:id="@+id/calendar_view_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scroll_text"
         android:layout_above="@+id/ln"
+        android:layout_below="@+id/scroll_text"
+        android:layout_marginBottom="@dimen/fab_margin"
         android:background="#FFFFFF"
         android:clipToPadding="false"
-        android:layout_marginBottom="@dimen/fab_margin"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:scrollbarStyle="outsideOverlay" />
@@ -97,21 +96,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2. Expected Gender Baby:"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
-            <CheckBox
+            <Switch
+                android:id="@+id/sw_boy_or_girl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Boy"
-                android:id="@+id/cbBoy"
-                android:drawSelectorOnTop="true"/>
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:textOff="Girl"
+                android:textOn="Boy" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Girl"
-                android:id="@+id/cbGirl"
-                android:drawSelectorOnTop="true" />
+            <ImageView
+                android:id="@+id/iv_boy_or_girl"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/girl2" />
         </LinearLayout>
 
         <LinearLayout

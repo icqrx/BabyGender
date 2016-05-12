@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +45,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     public static int ageMom;
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
-    //private Switch swBoyorGirl;
+    private Switch swBoyorGirl;
     private CheckBox cbBoy;
     private CheckBox cbGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -52,6 +54,7 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private CalendarPickerView calendarView;
     private ScrollView scrollText;
     private boolean isExpectedBoy;
+    private ImageView ivBoyOrGirl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +65,14 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         pickerSolarBirthday = (DatePicker) findViewById(R.id.long_date);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
-        cbBoy = (CheckBox) findViewById(R.id.cbBoy);
-        cbGirl = (CheckBox) findViewById(R.id.cbGirl);
-        //tv_lunarAge.setText("Lunar age: 25");
+        swBoyorGirl = (Switch)findViewById(R.id.sw_boy_or_girl);
+        ivBoyOrGirl = (ImageView)findViewById(R.id.iv_boy_or_girl);
+
         ageMom = 25;
-        isExpectedBoy = true;
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
         final Date today = new Date();
-
 
         Calendar calendar = Calendar.getInstance();
         thisYear = calendar.get(Calendar.YEAR);
@@ -81,35 +82,32 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                 .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                 .displayOnly();
 
+        swBoyorGirl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                   ivBoyOrGirl.setImageResource(R.drawable.boy2);
+                }else{
+                   ivBoyOrGirl.setImageResource(R.drawable.girl2);
+                }
+            }
+        });
         btn_timePredictor = (ButtonRectangle) findViewById(R.id.btn_time_predictor);
-        cbBoy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isExpectedBoy = true;
-                //Uncheck cbGirl
-                cbGirl.setChecked(false);
-            }
-        });
-        cbGirl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isExpectedBoy = false;
-                //Uncheck cbBoy
-                cbBoy.setChecked(false);
-            }
-        });
+
         btn_timePredictor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     scrollText.setVisibility(View.VISIBLE);
                     tvTimeResults.setText("");
-                    int temp;
-                    //Boolean isCheck = swBoyorGirl.isChecked();
-                    if (isExpectedBoy)
-                        temp = 0;
-                    else
+                    int temp = 0;
+                    Boolean isCheck = swBoyorGirl.isChecked();
+                    if (isCheck){
                         temp = 1;
+                    }else{
+                        temp = 0;
+                    }
+
                     List<Map<Date, Date>> result = getMonthXXX(temp);
 
                     final Calendar nextYear = Calendar.getInstance();

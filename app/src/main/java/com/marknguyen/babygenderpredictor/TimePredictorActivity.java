@@ -39,7 +39,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private ButtonRectangle btn_timePredictor;
     private ImageButton btn_chooseBirthday;
     private TextView tv_solarBirthday;
-    public static TextView tv_lunarAge;
     private AlertDialog theDialog;
     private CalendarPickerView dialogView;
     public static int ageMom;
@@ -67,7 +66,6 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
         swBoyorGirl = (Switch)findViewById(R.id.sw_boy_or_girl);
         ivBoyOrGirl = (ImageView)findViewById(R.id.iv_boy_or_girl);
-
         ageMom = 25;
 
         final Calendar nextYear = Calendar.getInstance();

@@ -65,27 +65,13 @@
                 android:text="@string/text_mom_birthday"
                 android:textStyle="bold" />
 
-            <!--<ImageButton-->
-            <!--android:id="@+id/btn_choose_birthday_screen2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginLeft="@dimen/fab_margin"-->
-            <!--android:src="@android:drawable/ic_menu_my_calendar"-->
-            <!--android:textStyle="bold" />-->
             <datepicker.DatePicker
                 android:id="@+id/long_date"
-                style="@android:style/Widget.Holo.Light.Spinner"
+                android:calendarViewShown="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv_solar_birthday2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/text_solar_birthday"-->
-        <!--android:textStyle="bold" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,14 +106,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="3. How many years do you wanna see?"
+                android:text="3. The expected range of year you wish to get pregnant?"
                 android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner_rangeOfAges"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/range_years" />

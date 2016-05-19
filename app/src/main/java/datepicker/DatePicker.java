@@ -167,7 +167,6 @@ public class DatePicker extends EditText implements DatePickerDialog.OnDateSetLi
 
 		TimePredictorActivity.ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
 
-		TimePredictorActivity.tv_lunarAge.setText("Lunar age: " + TimePredictorActivity.ageMom);
 //		if(onDateSetListener != null)
 //			onDateSetListener.onDateSet(this, year, month, day);
 	}

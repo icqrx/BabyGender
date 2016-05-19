@@ -43,7 +43,7 @@
         android:id="@+id/ln"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/btn_time_predictor"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
         android:orientation="vertical">
@@ -67,6 +67,7 @@
 
             <datepicker.DatePicker
                 android:id="@+id/long_date"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:calendarViewShown="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -106,12 +107,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 android:text="3. The expected range of year you wish to get pregnant?"
                 android:textStyle="bold" />
 
             <Spinner
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:id="@+id/spinner_rangeOfAges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,16 +121,17 @@
                 android:entries="@array/range_years" />
         </LinearLayout>
 
-        <materialdesign.views.ButtonRectangle
-            android:id="@+id/btn_time_predictor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:background="@color/mdtp_dark_gray"
-            android:text="@string/text_predictor" />
+
 
     </LinearLayout>
 
-
+    <materialdesign.views.ButtonRectangle
+        android:id="@+id/btn_time_predictor"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@color/mdtp_dark_gray"
+        android:text="@string/text_predictor" />
 </RelativeLayout>

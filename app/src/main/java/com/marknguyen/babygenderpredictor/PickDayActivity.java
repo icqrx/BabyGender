@@ -281,11 +281,6 @@ public class PickDayActivity extends AppCompatActivity {
         selectPreset(0, false);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 
     @Override
     protected void onPause() {

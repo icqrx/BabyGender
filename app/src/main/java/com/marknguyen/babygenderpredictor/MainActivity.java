@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private ButtonRectangle btn_PickGender;
 
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
@@ -57,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TimePredictorActivity.class));
             }
         });
-
-
     }
 
     @Override
@@ -67,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

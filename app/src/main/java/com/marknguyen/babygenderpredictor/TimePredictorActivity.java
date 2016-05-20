@@ -151,9 +151,6 @@ public class TimePredictorActivity extends FragmentActivity {
             }
         });
 
-//        pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
-
-
     }
 
     /**
@@ -223,6 +220,12 @@ public class TimePredictorActivity extends FragmentActivity {
         return maxDay;
     }
 
+    /**
+     *
+     * @param luMonth
+     * @param luYear
+     * @return
+     */
     public Map<Date, Date> convertLunarMonthToSolarMonthRange(int luMonth, int luYear) {
         Map<Date, Date> range = new HashMap<Date, Date>();
         java.text.DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -305,6 +308,12 @@ public class TimePredictorActivity extends FragmentActivity {
         return listOfRange;
     }
 
+    /**
+     *
+     * @param ageMom
+     * @param lunarPregnatMonth
+     * @return
+     */
     public int BoyorGirl(int ageMom, int lunarPregnatMonth) {
         return PickDayActivity.magic_table[ageMom - 18][lunarPregnatMonth - 1];
     }

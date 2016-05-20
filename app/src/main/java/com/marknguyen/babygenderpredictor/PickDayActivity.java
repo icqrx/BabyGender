@@ -44,6 +44,7 @@ public class PickDayActivity extends AppCompatActivity {
     private ImageView iv_boy;
     private ImageView iv_girl;
     private ImageView question_mark;
+    private ImageView ivBoyOrGirl;
     private Lunar lunarBirthday;
     private Lunar lunarPregnat;
 
@@ -99,6 +100,7 @@ public class PickDayActivity extends AppCompatActivity {
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
         question_mark = (ImageView) findViewById(R.id.question_mark);
+        ivBoyOrGirl = (ImageView)findViewById(R.id.iv_boyOrgirl);
 
         // Button to predict the gender of baby
         btn_predictor = (ButtonRectangle) findViewById(R.id.btn_gender_predictor);
@@ -108,18 +110,21 @@ public class PickDayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     if (checkBoyorGirl(lunarBirthday.lunarYear, lunarPregnat.lunarYear, lunarPregnat.lunarMonth) == 0) {
-                        iv_girl.setVisibility(View.VISIBLE);
+                        iv_girl.setVisibility(View.GONE);
                         iv_boy.setVisibility(View.GONE);
                         question_mark.setVisibility(View.GONE);
-                        tvGenderCheckResults.setText("Congratulations! You might be got a little girl!");
-                        mShimmerViewContainer.startShimmerAnimation();
+                        tvGenderCheckResults.setVisibility(View.GONE);
+                        ivBoyOrGirl.setImageResource(R.drawable.its_girl);
+                        ivBoyOrGirl.setVisibility(View.VISIBLE);
+//                        mShimmerViewContainer.startShimmerAnimation();
                     } else {
-                        iv_boy.setVisibility(View.VISIBLE);
+                        iv_boy.setVisibility(View.GONE);
                         iv_girl.setVisibility(View.GONE);
                         question_mark.setVisibility(View.GONE);
-                        tvGenderCheckResults.setText("Congratulations! You might be got a little boy!");
-                        mShimmerViewContainer.startShimmerAnimation();
-
+                        tvGenderCheckResults.setVisibility(View.GONE);
+                        ivBoyOrGirl.setImageResource(R.drawable.its_boy);
+                        ivBoyOrGirl.setVisibility(View.VISIBLE);
+//                        mShimmerViewContainer.startShimmerAnimation();
 
                     }
                 } catch (Exception e) {

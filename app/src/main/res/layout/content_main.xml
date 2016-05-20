@@ -18,7 +18,7 @@
 
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Widget.Button"
+        style="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_pick_day"

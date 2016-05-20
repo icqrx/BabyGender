@@ -28,14 +28,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import datepicker.DatePicker;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
 
 
-public class TimePredictorActivity extends FragmentActivity implements DatePicker.OnDateSetListener {
+public class TimePredictorActivity extends FragmentActivity {
     private ButtonRectangle btn_timePredictor;
     private ImageButton btn_chooseBirthday;
     private TextView tv_solarBirthday;
@@ -310,23 +309,4 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         return PickDayActivity.magic_table[ageMom - 18][lunarPregnatMonth - 1];
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-    }
 }

@@ -1,10 +1,10 @@
 package com.marknguyen.babygenderpredictor;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -48,12 +48,14 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
     private CheckBox cbBoy;
     private CheckBox cbGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private DatePicker pickerSolarBirthday;
+    private TextView pickerSolarBirthday;
     private static int thisYear;
     private CalendarPickerView calendarView;
     private ScrollView scrollText;
     private boolean isExpectedBoy;
     private ImageView ivBoyOrGirl;
+    private Lunar lunarBirthday;
+    private Lunar lunarCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +63,13 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         setContentView(R.layout.activity_time_predictor);
 
         scrollText = (ScrollView) findViewById(R.id.scroll_text);
-        pickerSolarBirthday = (DatePicker) findViewById(R.id.long_date);
+        pickerSolarBirthday = (TextView) findViewById(R.id.long_date);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
-        swBoyorGirl = (Switch)findViewById(R.id.sw_boy_or_girl);
-        ivBoyOrGirl = (ImageView)findViewById(R.id.iv_boy_or_girl);
+        swBoyorGirl = (Switch) findViewById(R.id.sw_boy_or_girl);
+        ivBoyOrGirl = (ImageView) findViewById(R.id.iv_boy_or_girl);
         ageMom = 25;
+
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -74,6 +77,30 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
 
         Calendar calendar = Calendar.getInstance();
         thisYear = calendar.get(Calendar.YEAR);
+
+        final Calendar myCalendar = Calendar.getInstance();
+        // Listener of choose mom birthday button
+        final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(myCalendar);
+                updateResult(year, monthOfYear, dayOfMonth);
+            }
+
+        };
+        pickerSolarBirthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog date_picker = new DatePickerDialog(TimePredictorActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                date_picker.getDatePicker().setCalendarViewShown(false);
+                date_picker.show();
+            }
+        });
 
         calendarView = (CalendarPickerView) findViewById(R.id.calendar_view_date);
         calendarView.init(today, nextYear.getTime()) //
@@ -83,10 +110,10 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
         swBoyorGirl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                   ivBoyOrGirl.setImageResource(R.drawable.boy2);
-                }else{
-                   ivBoyOrGirl.setImageResource(R.drawable.girl2);
+                if (isChecked) {
+                    ivBoyOrGirl.setImageResource(R.drawable.boy2);
+                } else {
+                    ivBoyOrGirl.setImageResource(R.drawable.girl2);
                 }
             }
         });
@@ -100,9 +127,9 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
                     tvTimeResults.setText("");
                     int temp = 0;
                     Boolean isCheck = swBoyorGirl.isChecked();
-                    if (isCheck){
+                    if (isCheck) {
                         temp = 1;
-                    }else{
+                    } else {
                         temp = 0;
                     }
 
@@ -125,8 +152,42 @@ public class TimePredictorActivity extends FragmentActivity implements DatePicke
             }
         });
 
-        pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
+//        pickerSolarBirthday.setDateFormat(DateFormat.getDateFormat(TimePredictorActivity.this));
 
+
+    }
+
+    /**
+     * @param myCalendar
+     */
+    public void updateLabel(Calendar myCalendar) {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        pickerSolarBirthday.setText(sdf.format(myCalendar.getTime()));
+
+    }
+
+    /**
+     * @param year
+     * @param monthOfYear
+     * @param dayOfMonth
+     */
+    public void updateResult(int year, int monthOfYear, int dayOfMonth) {
+        Solar solar = new Solar();
+        solar.solarYear = year;
+        solar.solarMonth = monthOfYear + 1;
+        solar.solarDay = dayOfMonth;
+        lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
+
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String[] curr = currentDate.split("-");
+        Solar solar_curr = new Solar();
+        solar_curr.solarDay = Integer.parseInt(curr[2]);
+        solar_curr.solarMonth = Integer.parseInt(curr[1]);
+        solar_curr.solarYear = Integer.parseInt(curr[0]);
+        lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
+
+        TimePredictorActivity.ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
     }
 
     /**

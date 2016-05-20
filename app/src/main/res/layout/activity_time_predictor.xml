@@ -65,12 +65,20 @@
                 android:text="@string/text_mom_birthday"
                 android:textStyle="bold" />
 
-            <datepicker.DatePicker
+            <EditText
                 android:id="@+id/long_date"
-                style="@android:style/Theme.Holo.Dialog.MinWidth"
-                android:calendarViewShown="false"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:focusable="false" />
+
+            <!--<datepicker.DatePicker-->
+                <!--android:id="@+id/long_date"-->
+                <!--style="@android:style/Theme.Holo.Dialog.MinWidth"-->
+                <!--android:calendarViewShown="false"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
         </LinearLayout>
 
 

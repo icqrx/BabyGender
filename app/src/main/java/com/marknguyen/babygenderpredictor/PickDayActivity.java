@@ -134,6 +134,17 @@ public class PickDayActivity extends AppCompatActivity {
         });
 
         final Calendar myCalendar = Calendar.getInstance();
+//        myCalendar.set(Calendar.YEAR, 1991);
+//        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
+//        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
+
+//        final Calendar myCalendar_pregnant = Calendar.getInstance();
+//        myCalendar_pregnant.set(Calendar.YEAR, myCalendar.get(Calendar.YEAR));
+//        myCalendar_pregnant.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
+//        myCalendar_pregnant.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
+
+//        updateLabel(0, myCalendar);
+//        updateLabel(1, myCalendar_pregnant);
         // Listener of choose mom birthday button
         final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
 

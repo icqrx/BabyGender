@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -61,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
                 android:text="@string/text_mom_birthday"
                 android:textStyle="bold" />
 
@@ -74,11 +75,11 @@
                 android:focusable="false" />
 
             <!--<datepicker.DatePicker-->
-                <!--android:id="@+id/long_date"-->
-                <!--style="@android:style/Theme.Holo.Dialog.MinWidth"-->
-                <!--android:calendarViewShown="false"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content" />-->
+            <!--android:id="@+id/long_date"-->
+            <!--style="@android:style/Theme.Holo.Dialog.MinWidth"-->
+            <!--android:calendarViewShown="false"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
         </LinearLayout>
 
 
@@ -90,19 +91,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="2. Expected Gender Baby:"
                 android:textStyle="bold" />
 
-            <Switch
+            <!--<Switch-->
+            <!--android:id="@+id/sw_boy_or_girl"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/fab_margin"-->
+            <!--android:textOff="Girl"-->
+            <!--android:textOn="Boy" />-->
+            <com.kyleduo.switchbutton.SwitchButton
                 android:id="@+id/sw_boy_or_girl"
+                style="@android:style/Widget.Holo.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/fab_margin"
-                android:textOff="Girl"
-                android:textOn="Boy" />
+                app:kswBackMeasureRatio="2.2"
+                app:kswBackRadius="2dp"
+                app:kswTextOff="Girl"
+                app:kswTextOn="Boy"
+                app:kswThumbRadius="2dp"
+                app:kswTintColor="#49416E" />
 
             <ImageView
                 android:id="@+id/iv_boy_or_girl"
+                style="@android:style/Widget.Holo.Light"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
@@ -121,8 +137,8 @@
                 android:textStyle="bold" />
 
             <Spinner
-                style="@android:style/Widget.Holo.Light.Spinner"
                 android:id="@+id/spinner_rangeOfAges"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
@@ -130,14 +146,13 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
 
     <materialdesign.views.ButtonRectangle
         android:id="@+id/btn_time_predictor"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
         android:background="@color/mdtp_dark_gray"

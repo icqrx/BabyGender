@@ -12,10 +12,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kyleduo.switchbutton.SwitchButton;
 import com.squareup.timessquare.CalendarPickerView;
 
 import java.text.ParseException;
@@ -43,7 +43,7 @@ public class TimePredictorActivity extends FragmentActivity {
     public static int ageMom;
     private Spinner spRangeOfAge;
     private TextView tvTimeResults;
-    private Switch swBoyorGirl;
+    private SwitchButton swBoyorGirl;
     private CheckBox cbBoy;
     private CheckBox cbGirl;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -65,7 +65,7 @@ public class TimePredictorActivity extends FragmentActivity {
         pickerSolarBirthday = (TextView) findViewById(R.id.long_date);
         spRangeOfAge = (Spinner) findViewById(R.id.spinner_rangeOfAges);
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
-        swBoyorGirl = (Switch) findViewById(R.id.sw_boy_or_girl);
+        swBoyorGirl = (SwitchButton) findViewById(R.id.sw_boy_or_girl);
         ivBoyOrGirl = (ImageView) findViewById(R.id.iv_boy_or_girl);
         ageMom = 25;
 
@@ -78,6 +78,10 @@ public class TimePredictorActivity extends FragmentActivity {
         thisYear = calendar.get(Calendar.YEAR);
 
         final Calendar myCalendar = Calendar.getInstance();
+        myCalendar.set(Calendar.YEAR, 1991);
+        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
+        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
+        updateLabel(myCalendar);
         // Listener of choose mom birthday button
         final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
 

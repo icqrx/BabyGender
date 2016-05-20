@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/calendar_square/calendar_square.iml" filepath="$PROJECT_DIR$/libs/calendar_square/calendar_square.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/switch_lib/switch_lib.iml" filepath="$PROJECT_DIR$/libs/switch_lib/switch_lib.iml" />
     </modules>
   </component>
 </project>

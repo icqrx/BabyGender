@@ -10,41 +10,32 @@
     tools:showIn="@layout/activity_main">
 
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/home" />
+        android:src="@drawable/home_predict" />
 
 
-    <!--<shimmer.ShimmerFrameLayout-->
-        <!--android:id="@+id/shimmer_view_container"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--shimmer:duration="1500">-->
-
-        <ImageView
-            android:id="@+id/sologan"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/boy_or_girl" />
-    <!--</shimmer.ShimmerFrameLayout>-->
-
-    <!--<TextView-->
-        <!--style="@style/thin.white.large"-->
-        <!--android:layout_below="@+id/shimmer_view_container"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="20dp"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/text_sologan"-->
-        <!--android:textColor="@color/mdtp_dark_gray" />-->
+    <TextView
+        style="@style/TextAppearance.AppCompat.Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_pick_day"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:text="Boy Or Girl"
+        android:textColor="@color/colorAccent"
+        android:textSize="45dp"
+        android:textStyle="bold" />
+    <!--<ImageView-->
+    <!--android:id="@+id/sologan"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="150dp"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_margin="@dimen/fab_margin"-->
+    <!--android:src="@drawable/logo" />-->
 
 
     <materialdesign.views.ButtonRectangle

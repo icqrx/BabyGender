@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.marknguyen.babygenderpredictor"
         minSdkVersion 15
-        renderscriptTargetApi 19
+        renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
         targetSdkVersion 23
         versionCode 1

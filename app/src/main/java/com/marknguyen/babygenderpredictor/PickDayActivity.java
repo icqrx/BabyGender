@@ -94,7 +94,7 @@ public class PickDayActivity extends AppCompatActivity {
         tv_lunar_birthday = (TextView) findViewById(R.id.tv_lunar_birthday);
         tv_solar_timebaby = (TextView) findViewById(R.id.tv_solar_timebaby);
         tv_lunar_timebaby = (TextView) findViewById(R.id.tv_lunar_timebaby);
-        tvGenderCheckResults = (TextView)findViewById(R.id.text_check_gender_results);
+        tvGenderCheckResults = (TextView) findViewById(R.id.text_check_gender_results);
 
         iv_boy = (ImageView) findViewById(R.id.iv_boy);
         iv_girl = (ImageView) findViewById(R.id.iv_girl);
@@ -157,11 +157,14 @@ public class PickDayActivity extends AppCompatActivity {
         };
 
         btnChooseBirthday = (EditText) findViewById(R.id.btn_choose_birthday);
+
         btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(PickDayActivity.this, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog date_picker = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                date_picker.getDatePicker().setCalendarViewShown(false);
+                date_picker.show();
             }
         });
 
@@ -170,9 +173,11 @@ public class PickDayActivity extends AppCompatActivity {
         btnTimeBaby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(PickDayActivity.this, choosePregnant, myCalendar
+                DatePickerDialog date_picker = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, choosePregnant, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                date_picker.getDatePicker().setCalendarViewShown(false);
+                date_picker.show();
             }
         });
 
@@ -268,7 +273,7 @@ public class PickDayActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-         selectPreset(0, false);
+        selectPreset(0, false);
     }
 
     @Override

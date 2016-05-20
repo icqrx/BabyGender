@@ -67,7 +67,7 @@
 
             <datepicker.DatePicker
                 android:id="@+id/long_date"
-                style="@android:style/Widget.Holo.Light.Spinner"
+                style="@android:style/Theme.Holo.Dialog.MinWidth"
                 android:calendarViewShown="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

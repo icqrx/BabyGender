@@ -15,6 +15,6 @@
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/boy1"
+        android:src="@drawable/boy2"
         android:scaleType="centerInside"/>
 </LinearLayout>

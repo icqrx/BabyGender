@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    android:src="@drawable/boy1" >
+    android:src="@drawable/boy2" >
 
 </ImageButton>

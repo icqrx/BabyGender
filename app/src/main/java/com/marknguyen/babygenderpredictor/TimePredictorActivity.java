@@ -55,6 +55,8 @@ public class TimePredictorActivity extends FragmentActivity {
     private ImageView ivBoyOrGirl;
     private Lunar lunarBirthday;
     private Lunar lunarCurrent;
+    private CalendarPickerView calendarPickerView;
+    private ImageView ivConfusing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +69,10 @@ public class TimePredictorActivity extends FragmentActivity {
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
         swBoyorGirl = (SwitchButton) findViewById(R.id.sw_boy_or_girl);
         ivBoyOrGirl = (ImageView) findViewById(R.id.iv_boy_or_girl);
-        ageMom = 25;
+        calendarPickerView = (CalendarPickerView)findViewById(R.id.calendar_view_date);
+        ivConfusing = (ImageView)findViewById(R.id.iv_confusing);
 
+        ageMom = 25;
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -141,7 +145,9 @@ public class TimePredictorActivity extends FragmentActivity {
                     final Calendar nextYear = Calendar.getInstance();
                     nextYear.add(Calendar.YEAR, Integer.parseInt(spRangeOfAge.getSelectedItem().toString()));
 
+                    ivConfusing.setVisibility(View.GONE);
 //                    calendarView.setCustomDayView(new SampleDayViewAdapter());
+                    calendarPickerView.setVisibility(View.VISIBLE);
                     calendarView.init(today, nextYear.getTime()) //
                             .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                             .withHighlightedRangeDates(result)

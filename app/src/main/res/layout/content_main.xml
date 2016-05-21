@@ -18,24 +18,24 @@
 
 
     <!--<TextView-->
-        <!--style="@style/TextAppearance.AppCompat.Widget.Button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_above="@+id/btn_pick_day"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="80dp"-->
-        <!--android:text="Boy Or Girl"-->
-        <!--android:textColor="@color/colorAccent"-->
-        <!--android:textSize="45dp"-->
-        <!--android:textStyle="bold" />-->
+    <!--style="@style/TextAppearance.AppCompat.Widget.Button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/btn_pick_day"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="80dp"-->
+    <!--android:text="Boy Or Girl"-->
+    <!--android:textColor="@color/colorAccent"-->
+    <!--android:textSize="45dp"-->
+    <!--android:textStyle="bold" />-->
     <ImageView
-    android:id="@+id/sologan"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:layout_alignParentTop="true"
+        android:id="@+id/sologan"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentRight="true"
-    android:layout_margin="@dimen/fab_margin"
-    android:src="@drawable/logo3" />
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/logo3" />
 
 
     <materialdesign.views.ButtonRectangle

@@ -95,13 +95,6 @@
                 android:text="2. Expected Gender Baby:"
                 android:textStyle="bold" />
 
-            <!--<Switch-->
-            <!--android:id="@+id/sw_boy_or_girl"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="@dimen/fab_margin"-->
-            <!--android:textOff="Girl"-->
-            <!--android:textOn="Boy" />-->
             <com.kyleduo.switchbutton.SwitchButton
                 android:id="@+id/sw_boy_or_girl"
                 style="@android:style/Widget.Holo.Light"
@@ -120,6 +113,7 @@
                 android:id="@+id/iv_boy_or_girl"
                 style="@android:style/Widget.Holo.Light"
                 android:layout_width="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/girl2" />
@@ -139,7 +133,7 @@
             <Spinner
                 android:id="@+id/spinner_rangeOfAges"
                 style="@android:style/Widget.Holo.Light.Spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
                 android:entries="@array/range_years" />

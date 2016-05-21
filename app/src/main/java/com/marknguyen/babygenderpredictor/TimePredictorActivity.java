@@ -141,7 +141,7 @@ public class TimePredictorActivity extends FragmentActivity {
                     final Calendar nextYear = Calendar.getInstance();
                     nextYear.add(Calendar.YEAR, Integer.parseInt(spRangeOfAge.getSelectedItem().toString()));
 
-                    calendarView.setCustomDayView(new SampleDayViewAdapter());
+//                    calendarView.setCustomDayView(new SampleDayViewAdapter());
                     calendarView.init(today, nextYear.getTime()) //
                             .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                             .withHighlightedRangeDates(result)

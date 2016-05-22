@@ -1,3 +1,4 @@
 include ':app'
 include ':libs:calendar_square'
 include ':libs:switch_lib'
+include ':libs:intro_laucher_lib'

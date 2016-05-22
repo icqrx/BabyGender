@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile project(':libs:calendar_square')
     compile project(':libs:switch_lib')
+    compile project(':libs:intro_laucher_lib')
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/laucher3"
+    android:layout_weight="10"
+    android:id="@+id/main">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textStyle="italic"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_weight="1"
+        android:padding="@dimen/fab_margin"
+
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"/>
+        <!--android:text="Gender Predictor is “said” to predict your baby’s sex based on Mom Chinese lunar age at the time you got pregnant and the Chinese lunar month in which you conceived. Otherwise, this application will also give the range of days during which sexual intercourse might have led to the conception."/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_gradient"
+        android:layout_height="64dp" />
+</LinearLayout>

@@ -14,7 +14,7 @@
     <string name="text_pick_gender">Pregnant Plan</string>
     <string name="text_sologan">Wondering whether you are having a boy or girl?\n Just use it ! </string>
     <string name="text_xxxmonth">3. XXX Month</string>
-    <string name="text_mom_birthday">1. Mom\'s Birthday?</string>
+    <string name="text_mom_birthday">1. Mom\'s age at conception?</string>
 
     <!--<string name="text_mom_birthday">Mom's Birthday</string>-->
     <!--<string name="text_xxx_month">XXX Month</string>-->
@@ -82,18 +82,18 @@
 
     <!-- DO NOT TRANSLATE -->
     <string name="mdtp_day_of_week_label_typeface" translatable="false">sans-serif</string>
-    <string name="text_solar_birthday">Solar birthday:</string>
-    <string name="text_lunar_birthday">Lunar birthday:</string>
+    <string name="text_solar_birthday">Solar date:</string>
+    <string name="text_lunar_birthday">Lunar date:</string>
     <string name="text_gender_check">Gender Check</string>
     <string name="text_predictor">Show Plan</string>
     <string name="text_loading">Loading...</string>
-    <string name="text_time_get_pregnat">2. When did you get pregnant? </string>
-    <string name="text_solar_pregnat">Solar pregnant:</string>
-    <string name="text_lunar_pregnat">Lunar pregnant:</string>
+    <string name="text_time_get_pregnat">2. Date of conception? </string>
+    <string name="text_solar_pregnat">Solar date:</string>
+    <string name="text_lunar_pregnat">Lunar date:</string>
     <string name="text_boy">Boy</string>
     <string name="text_girl">Girl</string>
     <string name="text_boyorgirl">2. Boy or Girl? </string>
-    <string name="text_gender_check_results">Please input the mom\'s birthday and pregnant time!</string>
+    <string name="text_gender_check_results">Please input the mom\'s age when your baby was conceived and the date it happend.</string>
 
     <string-array name="range_years">
         <item>1</item>

@@ -116,6 +116,9 @@ public class PickDayActivity extends AppCompatActivity {
                         tvGenderCheckResults.setVisibility(View.GONE);
                         ivBoyOrGirl.setImageResource(R.drawable.its_girl);
                         ivBoyOrGirl.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.Tada)
+                                .duration(700)
+                                .playOn(findViewById(R.id.iv_boyOrgirl));
 
                     } else {
                         iv_boy.setVisibility(View.GONE);
@@ -124,6 +127,9 @@ public class PickDayActivity extends AppCompatActivity {
                         tvGenderCheckResults.setVisibility(View.GONE);
                         ivBoyOrGirl.setImageResource(R.drawable.its_boy);
                         ivBoyOrGirl.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.Tada)
+                                .duration(700)
+                                .playOn(findViewById(R.id.iv_boyOrgirl));
 
                     }
                 } catch (Exception e) {

@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Timer;
@@ -124,6 +127,13 @@ public class PickDayActivity extends AppCompatActivity {
 
                     }
                 } catch (Exception e) {
+                    YoYo.with(Techniques.Tada)
+                            .duration(700)
+                            .playOn(findViewById(R.id.btn_choose_birthday));
+                    YoYo.with(Techniques.Tada)
+                            .duration(700)
+                            .playOn(findViewById(R.id.btn_choose_timebaby));
+
                     Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();
                 }
             }

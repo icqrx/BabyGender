@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/libs/intro_laucher_lib/intro_laucher_lib.iml" filepath="$PROJECT_DIR$/libs/intro_laucher_lib/intro_laucher_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/switch_lib/switch_lib.iml" filepath="$PROJECT_DIR$/libs/switch_lib/switch_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/view_animations_lib/view_animations_lib.iml" filepath="$PROJECT_DIR$/libs/view_animations_lib/view_animations_lib.iml" />
     </modules>
   </component>
 </project>

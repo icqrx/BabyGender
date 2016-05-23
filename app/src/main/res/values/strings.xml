@@ -3,11 +3,11 @@
     <string name="action_settings">Settings</string>
 <string name="text_instructor">
         <![CDATA[
-        <h1>Baby Gender Predictor </h1>
-        <h2>Chinese Method  </h2>
-        <p>1. Trước tiên, người mẹ cần xác định chính xác tuổi âm lịch của mình.</p>
-        <p>2. Sau đó, vợ chồng bạn sẽ tiến hành quan hệ sao cho thời điểm thụ thai chiếu theo đúng bảng ở trên: + là trai, – là gái.</p>
-        <p>Khi ứng dụng cách tính dựa trên bảng lịch vạn này, bạn cũng cần quan tâm đến cả dinh dưỡng và tâm lý nữa nhé. Bởi 2 yếu tố này đều có ảnh hưởng nhất định đến sự thành công của việc sinh con theo ý muốn. </p>
+        <h1>BABY GENDER PREDICTOR </h1>
+        <h2>PREDICTION: Conception Month + Woman’s Age => Gender </h2>
+        <p>When used for achieving its initial purpose: gender prediction, the Baby Gender Predictor method determines the fetal sex, considering the lunar month of conception and the lunar age of the mother, at the time of conception.</p>
+        <h2>SELECTION: Woman’s Age + Desired Gender => Conception Dates</h2>
+        <p>When used for pre-conception sex selection, this app determines the lunar months in which a child of the chosen sex is more likely to be conceived, taking into account the her lunar age at the moment of becoming pregnant. In the case of the parents trying to figure out how to conceive a boy, Baby Gender Predictor will tell you in what months a male offspring could be conceived.</p>
         ]]>
     </string>
     <string name="text_gender_checker">Boy/Girl Test</string>

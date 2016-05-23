@@ -134,7 +134,7 @@ public class PickDayActivity extends AppCompatActivity {
                             .duration(700)
                             .playOn(findViewById(R.id.btn_choose_timebaby));
 
-                    Toast.makeText(getBaseContext(), "Please enter input exactly!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Please enter input exactly! Maybe you are not over the age of 18?", Toast.LENGTH_SHORT).show();
                 }
             }
         });

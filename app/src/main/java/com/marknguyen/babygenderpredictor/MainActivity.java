@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shareToGMail(new String[]{"huuquoc09@gmail.com"},"Feedback","We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
+                shareToGMail(new String[]{"huuquoc09@gmail.com"},"Feedback Baby Gender Predictor","We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
             }
         });
 

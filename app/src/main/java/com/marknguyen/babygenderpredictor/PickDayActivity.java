@@ -113,7 +113,7 @@ public class PickDayActivity extends AppCompatActivity {
                         tvGenderCheckResults.setVisibility(View.GONE);
                         ivBoyOrGirl.setImageResource(R.drawable.its_girl);
                         ivBoyOrGirl.setVisibility(View.VISIBLE);
-//                        mShimmerViewContainer.startShimmerAnimation();
+
                     } else {
                         iv_boy.setVisibility(View.GONE);
                         iv_girl.setVisibility(View.GONE);
@@ -121,7 +121,6 @@ public class PickDayActivity extends AppCompatActivity {
                         tvGenderCheckResults.setVisibility(View.GONE);
                         ivBoyOrGirl.setImageResource(R.drawable.its_boy);
                         ivBoyOrGirl.setVisibility(View.VISIBLE);
-//                        mShimmerViewContainer.startShimmerAnimation();
 
                     }
                 } catch (Exception e) {

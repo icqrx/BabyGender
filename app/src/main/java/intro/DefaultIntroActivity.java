@@ -1,7 +1,9 @@
 package intro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Toast;
@@ -15,17 +17,23 @@ public final class DefaultIntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addSlide(SampleSlide.newInstance(R.layout.intro1));
-        addSlide(SampleSlide.newInstance(R.layout.intro2));
-        addSlide(new EndIntroSlide());
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("first_time", false)) {
+            addSlide(SampleSlide.newInstance(R.layout.intro1));
+            addSlide(SampleSlide.newInstance(R.layout.intro2));
+            addSlide(new EndIntroSlide());
 //        setColorDoneText(Color.parseColor("#ff66cc"));
 //        setNextArrowColor(Color.parseColor("#ff66cc"));
 //        setIndicatorColor(Color.parseColor("#ff66cc"), Color.GRAY);
 //        setColorSkipButton(Color.parseColor("#ff66cc"));
-        setDoneText("TRY IT NOW");
+            setDoneText("TRY IT NOW");
+        } else {
+            loadMainActivity();
+        }
     }
 
-    private void loadMainActivity(){
+    private void loadMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -33,6 +41,11 @@ public final class DefaultIntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("first_time", true);
+        editor.commit();
         loadMainActivity();
     }
 
@@ -43,7 +56,7 @@ public final class DefaultIntroActivity extends AppIntro {
         Toast.makeText(getApplicationContext(), "Skip", Toast.LENGTH_SHORT).show();
     }
 
-    public void getStarted(View v){
+    public void getStarted(View v) {
         loadMainActivity();
     }
 }

@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +24,15 @@ class PagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // Check if the fragment at this position has been retained by the PagerAdapter
-        if(retainedFragments.containsKey(position)) {
-            return retainedFragments.get(position);
+       try {
+           if(retainedFragments.containsKey(position)) {
+               return retainedFragments.get(position);
+           }
+           return fragments.get(position);
+       }catch (Exception e){
+
         }
-        return fragments.get(position);
+        return null;
     }
 
     @Override

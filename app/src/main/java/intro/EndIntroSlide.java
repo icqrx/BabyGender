@@ -47,12 +47,5 @@ public final class EndIntroSlide extends Fragment {
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-//        editText.setText(text);
-//        checkBox.setChecked(isCheckboxChecked);
-    }
 
 }

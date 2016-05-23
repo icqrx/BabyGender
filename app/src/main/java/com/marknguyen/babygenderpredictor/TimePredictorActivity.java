@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.squareup.timessquare.CalendarPickerView;
 
@@ -72,7 +74,7 @@ public class TimePredictorActivity extends FragmentActivity {
         calendarPickerView = (CalendarPickerView)findViewById(R.id.calendar_view_date);
         ivConfusing = (ImageView)findViewById(R.id.iv_confusing);
 
-        ageMom = 25;
+//        ageMom = 25;
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -82,10 +84,10 @@ public class TimePredictorActivity extends FragmentActivity {
         thisYear = calendar.get(Calendar.YEAR);
 
         final Calendar myCalendar = Calendar.getInstance();
-        myCalendar.set(Calendar.YEAR, 1991);
-        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
-        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
-        updateLabel(myCalendar);
+//        myCalendar.set(Calendar.YEAR, 1991);
+//        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
+//        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
+//        updateLabel(myCalendar);
         // Listener of choose mom birthday button
         final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
 
@@ -154,6 +156,9 @@ public class TimePredictorActivity extends FragmentActivity {
                             .displayOnly();
 
                 } catch (Exception e) {
+                    YoYo.with(Techniques.Tada)
+                            .duration(700)
+                            .playOn(findViewById(R.id.long_date));
                     Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
                     scrollText.setVisibility(View.GONE);
                 }
@@ -193,7 +198,7 @@ public class TimePredictorActivity extends FragmentActivity {
         solar_curr.solarYear = Integer.parseInt(curr[0]);
         lunarCurrent = LunarSolarConverter.SolarToLunar(solar_curr);
 
-        TimePredictorActivity.ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
+        ageMom = lunarCurrent.lunarYear - lunarBirthday.lunarYear;
     }
 
     /**

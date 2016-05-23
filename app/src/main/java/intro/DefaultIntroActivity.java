@@ -22,6 +22,7 @@ public final class DefaultIntroActivity extends AppIntro {
 //        setNextArrowColor(Color.parseColor("#ff66cc"));
 //        setIndicatorColor(Color.parseColor("#ff66cc"), Color.GRAY);
 //        setColorSkipButton(Color.parseColor("#ff66cc"));
+        setDoneText("TRY IT NOW");
     }
 
     private void loadMainActivity(){

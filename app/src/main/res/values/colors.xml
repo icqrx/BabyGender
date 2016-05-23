@@ -2,8 +2,8 @@
 <resources>
 
     <color name="white">#ffffff</color>
-    <color name="bg_gradient_start">#00BDB0</color>
-    <color name="bg_gradient_end">#820d2a</color>
+    <color name="bg_gradient_start">#FF4081</color>
+    <color name="bg_gradient_end">#FF4021</color>
     <color name="bg_button_login">#336167</color>
 
     <!--<color name="bg_gradient_start">#b21331</color>-->

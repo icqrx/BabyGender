@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/laucher4"
+    android:background="@drawable/laucher33"
     android:layout_weight="10"
     android:id="@+id/main">
     <TextView
@@ -18,6 +18,7 @@
         <!--android:text="Already pregnant and trying to guess whether you are having a boy or girl? And how to conceive a boy or-->
 <!--girl baby, everything includes Gender Predictor Application. There is always a 50% chance of getting the baby gender right.-->
 <!--Let’s try now!"/>-->
+
     <TextView
         android:layout_width="match_parent"
         android:background="@drawable/bg_gradient"

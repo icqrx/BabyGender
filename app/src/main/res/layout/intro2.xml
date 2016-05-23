@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/laucher2"
+    android:background="@drawable/laucher22"
     android:layout_weight="10"
     android:id="@+id/main">
     <TextView
@@ -16,6 +16,7 @@
         android:textColor="@color/mdtp_dark_gray"
         android:textSize="20sp"/>
         <!--android:text="Using the Chinese method was acquired some 700 years back by the royals of the China, Beijing. It is the process of following a Chinese calendar from the time of conceiving."/>-->
+
     <TextView
         android:layout_width="match_parent"
         android:background="@drawable/bg_gradient"

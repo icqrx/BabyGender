@@ -20,7 +20,6 @@ import java.util.Timer;
 
 import blurdialogfragment.SampleDialogFragment;
 import materialdesign.views.ButtonRectangle;
-import shimmer.ShimmerFrameLayout;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
 import sola2lunar.Solar;
@@ -39,7 +38,6 @@ public class PickDayActivity extends AppCompatActivity {
     private TextView tvGenderCheckResults;
     private ButtonRectangle btn_predictor;
     private Timer timer;
-    private ShimmerFrameLayout mShimmerViewContainer;
 
     private ImageView iv_boy;
     private ImageView iv_girl;
@@ -89,7 +87,6 @@ public class PickDayActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_pick_day);
 
-        mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
 
         tv_solar_birthday = (TextView) findViewById(R.id.tv_solar_birthday);
         tv_lunar_birthday = (TextView) findViewById(R.id.tv_lunar_birthday);
@@ -209,29 +206,6 @@ public class PickDayActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Select one of the shimmer animation presets.
-     *
-     * @param preset    index of the shimmer animation preset
-     * @param showToast whether to show a toast describing the preset, or not
-     */
-    private void selectPreset(int preset, boolean showToast) {
-        if (mCurrentPreset == preset) {
-            return;
-        }
-        mCurrentPreset = preset;
-
-        // Save the state of the animation
-        boolean isPlaying = mShimmerViewContainer.isAnimationStarted();
-
-        // Reset all parameters of the shimmer animation
-        mShimmerViewContainer.useDefaults();
-
-        // If a toast is already showing, hide it
-        if (mPresetToast != null) {
-            mPresetToast.cancel();
-        }
-    }
 
     /**
      * @param year
@@ -285,24 +259,8 @@ public class PickDayActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        selectPreset(0, false);
-    }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mShimmerViewContainer.stopShimmerAnimation();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     /**
      * Check Baby's Gender

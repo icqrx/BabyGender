@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.view.View;
 import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.AppIntro;
@@ -46,7 +45,10 @@ public final class DefaultIntroActivity extends AppIntro {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("first_time", true);
         editor.commit();
+
         loadMainActivity();
+
+        finish();
     }
 
     @Override
@@ -54,9 +56,6 @@ public final class DefaultIntroActivity extends AppIntro {
         super.onSkipPressed(currentFragment);
         loadMainActivity();
         Toast.makeText(getApplicationContext(), "Skip", Toast.LENGTH_SHORT).show();
-    }
-
-    public void getStarted(View v) {
-        loadMainActivity();
+        finish();
     }
 }

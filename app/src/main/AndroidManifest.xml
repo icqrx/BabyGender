@@ -17,6 +17,7 @@
         <activity
             android:name="intro.DefaultIntroActivity"
             android:label="@string/app_name"
+            android:noHistory="true"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

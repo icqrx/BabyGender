@@ -5,7 +5,12 @@
         <![CDATA[
         <h1>BABY GENDER PREDICTOR </h1>
         <h2>PREDICTION: Conception Month + Woman’s Age => Gender </h2>
-        <p>When used for achieving its initial purpose: gender prediction, the Baby Gender Predictor method determines the fetal sex, considering the lunar month of conception and the lunar age of the mother, at the time of conception.</p>
+        <p>When used for achieving its initial purpose: gender prediction, the Baby Gender Predictor method determines the fetal sex, considering the lunar month of conception (the date have sexual intercourse) and the lunar age of the mother, at the time of conception.</p>
+        ]]>
+    </string>
+    <string name="text_instructor1">
+        <![CDATA[
+        <h1>BABY GENDER PREDICTOR </h1>
         <h2>SELECTION: Woman’s Age + Desired Gender => Conception Dates</h2>
         <p>When used for pre-conception sex selection, this app determines the lunar months in which a child of the chosen sex is more likely to be conceived, taking into account the her lunar age at the moment of becoming pregnant. In the case of the parents trying to figure out how to conceive a boy, Baby Gender Predictor will tell you in what months a male offspring could be conceived.</p>
         ]]>
@@ -93,7 +98,7 @@
     <string name="text_boy">Boy</string>
     <string name="text_girl">Girl</string>
     <string name="text_boyorgirl">2. Boy or Girl? </string>
-    <string name="text_gender_check_results">Please input the mom\'s age when your baby was conceived and the date it happend.</string>
+    <string name="text_gender_check_results">Please input the mom\'s birthday and the conception date.</string>
 
     <string-array name="range_years">
         <item>1</item>

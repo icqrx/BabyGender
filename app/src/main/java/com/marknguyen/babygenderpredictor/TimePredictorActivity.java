@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -30,6 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import blurdialogfragment.SampleDialogFragment1;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
 import sola2lunar.LunarSolarConverter;
@@ -74,7 +76,15 @@ public class TimePredictorActivity extends FragmentActivity {
         calendarPickerView = (CalendarPickerView)findViewById(R.id.calendar_view_date);
         ivConfusing = (ImageView)findViewById(R.id.iv_confusing);
 
-//        ageMom = 25;
+        FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info1);
+        fab_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SampleDialogFragment1 fragment
+                        = SampleDialogFragment1.newInstance();
+                fragment.show(getFragmentManager(), "blur_sample");
+            }
+        });
 
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);

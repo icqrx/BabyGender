@@ -244,7 +244,7 @@ public class PickDayActivity extends AppCompatActivity {
                 solar.solarMonth = monthOfYear;
                 solar.solarDay = dayOfMonth;
                 lunarPregnat = LunarSolarConverter.SolarToLunar(solar);
-                tv_lunar_timebaby.setText("Lunar Pregnat Time: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
+                tv_lunar_timebaby.setText("Lunar Conception Date: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
                 break;
             }
         }
@@ -269,9 +269,6 @@ public class PickDayActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 
     /**
      * Check Baby's Gender

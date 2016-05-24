@@ -19,15 +19,15 @@ import com.marknguyen.babygenderpredictor.R;
  * Simple fragment with blur effect behind.
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class SampleDialogFragment extends BlurDialogFragment {
+public class SampleDialogFragment1 extends BlurDialogFragment {
 
     private int mRadius;
     private float mDownScaleFactor;
     private boolean mDimming;
     private boolean mDebug;
 
-    public static SampleDialogFragment newInstance() {
-        SampleDialogFragment fragment = new SampleDialogFragment();
+    public static SampleDialogFragment1 newInstance() {
+        SampleDialogFragment1 fragment = new SampleDialogFragment1();
         return fragment;
     }
 
@@ -36,7 +36,7 @@ public class SampleDialogFragment extends BlurDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_fragment, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_fragment1, null);
         // get our html content
         String htmlAsString = getString(R.string.text_instructor);
         Spanned htmlAsSpanned = Html.fromHtml(htmlAsString); // used by TextView

@@ -34,9 +34,7 @@ public class PickDayActivity extends AppCompatActivity {
 
     private EditText btnChooseBirthday;
     private EditText btnTimeBaby;
-    private TextView tv_solar_birthday;
     private TextView tv_lunar_birthday;
-    private TextView tv_solar_timebaby;
     private TextView tv_lunar_timebaby;
     private TextView tvGenderCheckResults;
     private ButtonRectangle btn_predictor;
@@ -91,9 +89,7 @@ public class PickDayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pick_day);
 
 
-        tv_solar_birthday = (TextView) findViewById(R.id.tv_solar_birthday);
         tv_lunar_birthday = (TextView) findViewById(R.id.tv_lunar_birthday);
-        tv_solar_timebaby = (TextView) findViewById(R.id.tv_solar_timebaby);
         tv_lunar_timebaby = (TextView) findViewById(R.id.tv_lunar_timebaby);
         tvGenderCheckResults = (TextView) findViewById(R.id.text_check_gender_results);
 
@@ -146,6 +142,7 @@ public class PickDayActivity extends AppCompatActivity {
         });
 
         final Calendar myCalendar = Calendar.getInstance();
+        final Calendar myCalendar1 = Calendar.getInstance();
 //        myCalendar.set(Calendar.YEAR, 1991);
 //        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
 //        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
@@ -175,17 +172,16 @@ public class PickDayActivity extends AppCompatActivity {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(1, myCalendar);
+                myCalendar1.set(Calendar.YEAR, year);
+                myCalendar1.set(Calendar.MONTH, monthOfYear);
+                myCalendar1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(1, myCalendar1);
                 updateResult(1, year, monthOfYear, dayOfMonth);
             }
 
         };
 
         btnChooseBirthday = (EditText) findViewById(R.id.btn_choose_birthday);
-
         btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,11 +197,11 @@ public class PickDayActivity extends AppCompatActivity {
         btnTimeBaby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog date_picker = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, choosePregnant, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH));
-                date_picker.getDatePicker().setCalendarViewShown(false);
-                date_picker.show();
+                DatePickerDialog date_picker1 = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, choosePregnant, myCalendar
+                        .get(Calendar.YEAR), myCalendar1.get(Calendar.MONTH),
+                        myCalendar1.get(Calendar.DAY_OF_MONTH));
+                date_picker1.getDatePicker().setCalendarViewShown(false);
+                date_picker1.show();
             }
         });
 
@@ -231,7 +227,7 @@ public class PickDayActivity extends AppCompatActivity {
         switch (flag) {
             case 0: {
                 String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
-                tv_solar_birthday.setText(date);
+//                tv_solar_birthday.setText(date);
                 Solar solar = new Solar();
                 solar.solarYear = year;
                 solar.solarMonth = monthOfYear;
@@ -242,7 +238,7 @@ public class PickDayActivity extends AppCompatActivity {
             }
             case 1: {
                 String date = "You picked the following date: " + dayOfMonth + "/" + (++monthOfYear) + "/" + year;
-                tv_solar_timebaby.setText(date);
+//                tv_solar_timebaby.setText(date);
                 Solar solar = new Solar();
                 solar.solarYear = year;
                 solar.solarMonth = monthOfYear;

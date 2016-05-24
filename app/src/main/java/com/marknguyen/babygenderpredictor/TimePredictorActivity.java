@@ -300,12 +300,17 @@ public class TimePredictorActivity extends FragmentActivity {
                 listOfRange.add(range);
 
                 // show range of dates by textview
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
                 Iterator<Map.Entry<Date, Date>> iterator = range.entrySet().iterator();
                 Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                tmp_solar_month += formatter.format(start.getTime()) + " --> " + formatter.format(end.getTime()) + "\n";
+                if (end.after(new Date())){
+
+                    tmp_solar_month += formatter.format(start.getTime()) + " to " + formatter.format(end.getTime()) + "\n";
+                }
+
             }
             if (i == 12) {
                 tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in the range of dates (dd/mm/yyyy): \n" + tmp_solar_month);

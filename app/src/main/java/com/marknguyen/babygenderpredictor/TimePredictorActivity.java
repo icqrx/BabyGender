@@ -148,8 +148,10 @@ public class TimePredictorActivity extends FragmentActivity {
                     Boolean isCheck = swBoyorGirl.isChecked();
                     if (isCheck) {
                         temp = 1;
+                        isExpectedBoy = true;
                     } else {
                         temp = 0;
+                        isExpectedBoy = false;
                     }
 
                     List<Map<Date, Date>> result = getMonthXXX(temp);
@@ -302,36 +304,75 @@ public class TimePredictorActivity extends FragmentActivity {
         int tmp_year = 0;
         String tmp_month = "";
         String tmp_solar_month = "";
+        String gender = "";
+        int tmpStartYear;
+        int tmpEndYear;
+        int tmpStartMonth;
+        int tmpEndMonth;
 
+        ArrayList<Integer> listOfMonth = new ArrayList<Integer>();
+        ArrayList<Integer> listOfYear = new ArrayList<Integer>();
+
+        if(isExpectedBoy)
+            gender = "boy";
+        else
+            gender = "girl";
+
+        tvTimeResults.append("To conceive a " + gender + " baby, try to have sexual intercourse in the following months (Please find detail dates in the calendar bellow): \n");
         for (int i = 1; i <= 12; i++) {
             if (BoyorGirl(tmp_age, i) == temp) {
-                tmp_month += ", " + i;
+                tmp_month = tmp_month +  ", " + i;
                 range = convertLunarMonthToSolarMonthRange(i, thisYear + tmp_year);
                 listOfRange.add(range);
 
                 // show range of dates by textview
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat formatter_month = new SimpleDateFormat("M");
+                SimpleDateFormat formatter_year = new SimpleDateFormat("yyyy");
 
                 Iterator<Map.Entry<Date, Date>> iterator = range.entrySet().iterator();
                 Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
-                if (end.after(new Date())){
 
-                    tmp_solar_month += formatter.format(start.getTime()) + " to " + formatter.format(end.getTime()) + "\n";
-                }
+                tmpStartYear = Integer.parseInt(formatter_year.format(start.getTime()).toString());
+                tmpEndYear = Integer.parseInt(formatter_year.format(end.getTime()).toString());
+                tmpStartMonth = Integer.parseInt(formatter_month.format(start.getTime()).toString());
+                tmpEndMonth = Integer.parseInt(formatter_month.format(end.getTime()).toString());
 
+                listOfMonth.add(tmpStartMonth);
+                listOfYear.add(tmpStartYear);
+                listOfMonth.add(tmpEndMonth);
+                listOfYear.add(tmpEndYear);
             }
+
             if (i == 12) {
-                tvTimeResults.append("At the ages of " + tmp_age + " the baby prediction time in the range of dates (dd/mm/yyyy): \n" + tmp_solar_month);
-                tvTimeResults.append("\n");
                 tmp_age++;
-                i = 0;
                 tmp_year++;
-                tmp_solar_month = "";
+                i = 0;
             }
             if (tmp_year == Integer.parseInt(rangeAges)) {
                 break;
+            }
+        }
+
+        for(int i = 0; i < listOfYear.size(); i++){
+            if(i == 0){
+                tmp_solar_month += listOfYear.get(i).toString() + ": ";
+                tmp_solar_month += listOfMonth.get(i).toString();
+                if(listOfYear.size() > 0)
+                    tmp_solar_month+= ", ";
+                continue;
+            }else if((i > 0) && !(listOfYear.get(i).equals(listOfYear.get(i-1)))){
+                tmp_solar_month += "\n" + listOfYear.get(i).toString() + ": ";
+                tmp_solar_month += listOfMonth.get(i).toString();
+                if((listOfYear.size() > i+1) && (listOfYear.get(i).equals(listOfYear.get(i+1))))
+                    tmp_solar_month += ", ";
+                continue;
+            }
+            if(!(listOfMonth.get(i).equals(listOfMonth.get(i-1)))) {
+                tmp_solar_month += listOfMonth.get(i).toString();
+                if((listOfYear.size() > i+1) && (listOfYear.get(i).equals(listOfYear.get(i+1))))
+                    tmp_solar_month += ", ";
             }
         }
         tvTimeResults.append(tmp_solar_month);

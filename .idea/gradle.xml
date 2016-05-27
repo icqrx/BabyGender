@@ -18,6 +18,17 @@
             <option value="$PROJECT_DIR$/libs/view_animations_lib" />
           </set>
         </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/calendar_square" />
+            <option value="$PROJECT_DIR$/libs/intro_laucher_lib" />
+            <option value="$PROJECT_DIR$/libs/switch_lib" />
+            <option value="$PROJECT_DIR$/libs/view_animations_lib" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

@@ -25,12 +25,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
+import Utils.MultiValueMap;
 import blurdialogfragment.SampleDialogFragment1;
 import materialdesign.views.ButtonRectangle;
 import sola2lunar.Lunar;
@@ -73,8 +76,8 @@ public class TimePredictorActivity extends FragmentActivity {
         tvTimeResults = (TextView) findViewById(R.id.tv_time_results);
         swBoyorGirl = (SwitchButton) findViewById(R.id.sw_boy_or_girl);
         ivBoyOrGirl = (ImageView) findViewById(R.id.iv_boy_or_girl);
-        calendarPickerView = (CalendarPickerView)findViewById(R.id.calendar_view_date);
-        ivConfusing = (ImageView)findViewById(R.id.iv_confusing);
+        calendarPickerView = (CalendarPickerView) findViewById(R.id.calendar_view_date);
+        ivConfusing = (ImageView) findViewById(R.id.iv_confusing);
 
         FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info1);
         fab_info.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +117,7 @@ public class TimePredictorActivity extends FragmentActivity {
         pickerSolarBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog date_picker = new DatePickerDialog(TimePredictorActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
+                DatePickerDialog date_picker = new DatePickerDialog(TimePredictorActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
                 date_picker.getDatePicker().setCalendarViewShown(false);
                 date_picker.show();
@@ -248,7 +251,6 @@ public class TimePredictorActivity extends FragmentActivity {
     }
 
     /**
-     *
      * @param luMonth
      * @param luYear
      * @return
@@ -290,6 +292,14 @@ public class TimePredictorActivity extends FragmentActivity {
         return range;
     }
 
+    public String getMonthList(ArrayList<Integer> listOfMonth) {
+        String tmplistOfMonth = "";
+        for (Integer i : listOfMonth) {
+            tmplistOfMonth += i + ", ";
+        }
+        return tmplistOfMonth;
+    }
+
     /**
      * get range XXX
      *
@@ -300,20 +310,17 @@ public class TimePredictorActivity extends FragmentActivity {
         List<Map<Date, Date>> listOfRange = new ArrayList<>();
         Map<Date, Date> range = new HashMap<Date, Date>();
         String rangeAges = spRangeOfAge.getSelectedItem().toString();
-        int tmp_age = ageMom;
-        int tmp_year = 0;
-        String tmp_month = "";
-        String tmp_solar_month = "";
-        String gender = "";
-        int tmpStartYear;
-        int tmpEndYear;
-        int tmpStartMonth;
+
+        int tmp_age = ageMom; int tmp_year = 0;
+        int tmp_total = 0; String tmp_month = "";
+        String gender = ""; int tmpStartYear;
+        int tmpEndYear; int tmpStartMonth;
         int tmpEndMonth;
 
-        ArrayList<Integer> listOfMonth = new ArrayList<Integer>();
-        ArrayList<Integer> listOfYear = new ArrayList<Integer>();
+        MultiValueMap<Integer, Integer> listOfMonth = new MultiValueMap<Integer, Integer>();
+        Map<Integer, List<Integer>> listData = new TreeMap<>();
 
-        if(isExpectedBoy)
+        if (isExpectedBoy)
             gender = "boy";
         else
             gender = "girl";
@@ -321,11 +328,11 @@ public class TimePredictorActivity extends FragmentActivity {
         tvTimeResults.append("To conceive a " + gender + " baby, try to have sexual intercourse in the following months (Please find detail dates in the calendar bellow): \n");
         for (int i = 1; i <= 12; i++) {
             if (BoyorGirl(tmp_age, i) == temp) {
-                tmp_month = tmp_month +  ", " + i;
-                range = convertLunarMonthToSolarMonthRange(i, thisYear + tmp_year);
+                tmp_total = thisYear + tmp_year; // year after + range of years
+                range = convertLunarMonthToSolarMonthRange(i, tmp_total);
                 listOfRange.add(range);
 
-                // show range of dates by textview
+                // get range of month
                 SimpleDateFormat formatter_month = new SimpleDateFormat("M");
                 SimpleDateFormat formatter_year = new SimpleDateFormat("yyyy");
 
@@ -333,54 +340,39 @@ public class TimePredictorActivity extends FragmentActivity {
                 Map.Entry<Date, Date> pairs = iterator.next();
                 Date start = pairs.getKey();
                 Date end = pairs.getValue();
-
-                tmpStartYear = Integer.parseInt(formatter_year.format(start.getTime()).toString());
-                tmpEndYear = Integer.parseInt(formatter_year.format(end.getTime()).toString());
+                //get month
                 tmpStartMonth = Integer.parseInt(formatter_month.format(start.getTime()).toString());
                 tmpEndMonth = Integer.parseInt(formatter_month.format(end.getTime()).toString());
-
-                listOfMonth.add(tmpStartMonth);
-                listOfYear.add(tmpStartYear);
-                listOfMonth.add(tmpEndMonth);
-                listOfYear.add(tmpEndYear);
+                tmpStartYear = Integer.parseInt(formatter_year.format(start.getTime()).toString());
+                tmpEndYear = Integer.parseInt(formatter_year.format(end.getTime()).toString());
+                listOfMonth.putValue(tmpStartYear, tmpStartMonth);
+                listOfMonth.putValue(tmpEndYear, tmpEndMonth);
             }
 
             if (i == 12) {
-                tmp_age++;
-                tmp_year++;
-                i = 0;
+                tmp_age++; tmp_year++; i = 0;
             }
             if (tmp_year == Integer.parseInt(rangeAges)) {
                 break;
             }
         }
-
-        for(int i = 0; i < listOfYear.size(); i++){
-            if(i == 0){
-                tmp_solar_month += listOfYear.get(i).toString() + ": ";
-                tmp_solar_month += listOfMonth.get(i).toString();
-                if(listOfYear.size() > 0)
-                    tmp_solar_month+= ", ";
-                continue;
-            }else if((i > 0) && !(listOfYear.get(i).equals(listOfYear.get(i-1)))){
-                tmp_solar_month += "\n" + listOfYear.get(i).toString() + ": ";
-                tmp_solar_month += listOfMonth.get(i).toString();
-                if((listOfYear.size() > i+1) && (listOfYear.get(i).equals(listOfYear.get(i+1))))
-                    tmp_solar_month += ", ";
-                continue;
+        // show range of month by textview
+        listData = listOfMonth.getData();
+        Iterator<Integer> iter = listData.keySet().iterator();
+        while (iter.hasNext()) {
+            Integer key = iter.next();
+            List<Integer> value = listData.get(key);
+            Collections.sort(value);
+            for(Integer item : value ){
+                tmp_month += item + ", ";
             }
-            if(!(listOfMonth.get(i).equals(listOfMonth.get(i-1)))) {
-                tmp_solar_month += listOfMonth.get(i).toString();
-                if((listOfYear.size() > i+1) && (listOfYear.get(i).equals(listOfYear.get(i+1))))
-                    tmp_solar_month += ", ";
-            }
+            tvTimeResults.append("At the year of " + key + ": " + tmp_month.substring(0,tmp_month.length()-2) + "\n");
+            tmp_month = "";
         }
-        tvTimeResults.append(tmp_solar_month);
         return listOfRange;
     }
 
     /**
-     *
      * @param ageMom
      * @param lunarPregnatMonth
      * @return

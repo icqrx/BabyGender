@@ -39,7 +39,7 @@ public class PickDayActivity extends AppCompatActivity {
     private TextView tvGenderCheckResults;
     private ButtonRectangle btn_predictor;
     private Timer timer;
-
+    private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
     private ImageView iv_boy;
     private ImageView iv_girl;
     private ImageView question_mark;
@@ -141,70 +141,24 @@ public class PickDayActivity extends AppCompatActivity {
             }
         });
 
-        final Calendar myCalendar = Calendar.getInstance();
         final Calendar myCalendar1 = Calendar.getInstance();
-//        myCalendar.set(Calendar.YEAR, 1991);
-//        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
-//        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
-
-//        final Calendar myCalendar_pregnant = Calendar.getInstance();
-//        myCalendar_pregnant.set(Calendar.YEAR, myCalendar.get(Calendar.YEAR));
-//        myCalendar_pregnant.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
-//        myCalendar_pregnant.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
-
-//        updateLabel(0, myCalendar);
-//        updateLabel(1, myCalendar_pregnant);
-        // Listener of choose mom birthday button
-        final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(0, myCalendar);
-                updateResult(0, year, monthOfYear, dayOfMonth);
-            }
-
-        };
-        // Listener of choose pregnant time
-        final DatePickerDialog.OnDateSetListener choosePregnant = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                myCalendar1.set(Calendar.YEAR, year);
-                myCalendar1.set(Calendar.MONTH, monthOfYear);
-                myCalendar1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(1, myCalendar1);
-                updateResult(1, year, monthOfYear, dayOfMonth);
-            }
-
-        };
 
         btnChooseBirthday = (EditText) findViewById(R.id.btn_choose_birthday);
         btnChooseBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog date_picker = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH));
-                date_picker.getDatePicker().setCalendarViewShown(false);
-                date_picker.show();
+                showDialog();
             }
         });
-
 
         btnTimeBaby = (EditText) findViewById(R.id.btn_choose_timebaby);
         btnTimeBaby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog date_picker1 = new DatePickerDialog(PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, choosePregnant, myCalendar
-                        .get(Calendar.YEAR), myCalendar1.get(Calendar.MONTH),
-                        myCalendar1.get(Calendar.DAY_OF_MONTH));
-                date_picker1.getDatePicker().setCalendarViewShown(false);
-                date_picker1.show();
+
+                showDialog1();
             }
         });
-
 
         FloatingActionButton fab_info = (FloatingActionButton) findViewById(R.id.fab_info);
         fab_info.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +171,61 @@ public class PickDayActivity extends AppCompatActivity {
         });
     }
 
+    private void showDialog() {
+        if (mYear == 0 || mMonth == 0 || mDay == 0) {
+            final Calendar c = Calendar.getInstance();
+            mYear = 1991;
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+        }
 
+        DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
+
+            // when dialog box is closed, below method will be called.
+            public void onDateSet(DatePicker myCalendar, int selectedYear,
+                                  int selectedMonth, int selectedDay) {
+                mYear = selectedYear;
+                mMonth = selectedMonth;
+                mDay = selectedDay;
+                updateLabel(0, mYear, mMonth, mDay );
+                updateResult(0, selectedYear, selectedMonth, selectedDay);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, mYear, mMonth, mDay);
+
+        datePickerDialog.getDatePicker().setCalendarViewShown(false);
+        datePickerDialog.show();
+    }
+
+    private void showDialog1() {
+
+        if (mYear1 == 0 || mMonth1 == 0 || mDay1 == 0) {
+            final Calendar c1 = Calendar.getInstance();
+            mYear1 = c1.get(Calendar.YEAR);
+            mMonth1 = c1.get(Calendar.MONTH);
+            mDay1 = c1.get(Calendar.DAY_OF_MONTH);
+        }
+        DatePickerDialog.OnDateSetListener choosePregnant = new DatePickerDialog.OnDateSetListener() {
+
+            // when dialog box is closed, below method will be called.
+            public void onDateSet(DatePicker myCalendar, int selectedYear,
+                                  int selectedMonth, int selectedDay) {
+                mYear1 = selectedYear;
+                mMonth1 = selectedMonth;
+                mDay1= selectedDay;
+                updateLabel(1, mYear1, mMonth1, mDay1 );
+                updateResult(1, selectedYear, selectedMonth, selectedDay);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                PickDayActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, choosePregnant, mYear1, mMonth1, mDay1);
+
+        datePickerDialog.getDatePicker().setCalendarViewShown(false);
+        datePickerDialog.show();
+    }
     /**
      * @param year
      * @param monthOfYear
@@ -252,13 +260,17 @@ public class PickDayActivity extends AppCompatActivity {
     }
 
     /**
-     * Update the label
      *
-     * @param myCalendar
+     * @param flag
+     * @param year
+     * @param monthOfYear
+     * @param dayOfMonth
      */
-    public void updateLabel(int flag, Calendar myCalendar) {
+    public void updateLabel(int flag, int year, int monthOfYear, int dayOfMonth) {
+        Calendar myCalendar = Calendar.getInstance();
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        myCalendar.set(year, monthOfYear, dayOfMonth);
         switch (flag) {
             case 0:
                 btnChooseBirthday.setText(sdf.format(myCalendar.getTime()));

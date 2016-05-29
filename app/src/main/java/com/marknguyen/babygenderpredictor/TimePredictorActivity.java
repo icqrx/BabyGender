@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -53,7 +54,7 @@ public class TimePredictorActivity extends FragmentActivity {
     private SwitchButton swBoyorGirl;
     private CheckBox cbBoy;
     private CheckBox cbGirl;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int mYear, mMonth, mDay;
     private TextView pickerSolarBirthday;
     private static int thisYear;
     private CalendarPickerView calendarView;
@@ -93,34 +94,13 @@ public class TimePredictorActivity extends FragmentActivity {
         nextYear.add(Calendar.YEAR, 1);
         final Date today = new Date();
 
-        Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         thisYear = calendar.get(Calendar.YEAR);
 
-        final Calendar myCalendar = Calendar.getInstance();
-//        myCalendar.set(Calendar.YEAR, 1991);
-//        myCalendar.set(Calendar.MONTH, myCalendar.get(Calendar.MONTH));
-//        myCalendar.set(Calendar.DAY_OF_MONTH, myCalendar.get(Calendar.DAY_OF_MONTH));
-//        updateLabel(myCalendar);
-        // Listener of choose mom birthday button
-        final DatePickerDialog.OnDateSetListener chooseBirthday = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(myCalendar);
-                updateResult(year, monthOfYear, dayOfMonth);
-            }
-
-        };
         pickerSolarBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog date_picker = new DatePickerDialog(TimePredictorActivity.this, android.R.style.Theme_Holo_Dialog_MinWidth, chooseBirthday, 1991, myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH));
-                date_picker.getDatePicker().setCalendarViewShown(false);
-                date_picker.show();
+                showDialog();
             }
         });
 
@@ -183,12 +163,45 @@ public class TimePredictorActivity extends FragmentActivity {
 
     }
 
-    /**
-     * @param myCalendar
-     */
-    public void updateLabel(Calendar myCalendar) {
+    private void showDialog() {
+        if (mYear == 0 || mMonth == 0 || mDay == 0) {
+            final Calendar c = Calendar.getInstance();
+            mYear = 1991;
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+        }
+
+        DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+            // when dialog box is closed, below method will be called.
+            public void onDateSet(DatePicker myCalendar, int selectedYear,
+                                  int selectedMonth, int selectedDay) {
+                mYear = selectedYear;
+                mMonth = selectedMonth;
+                mDay = selectedDay;
+                updateLabel(mYear, mMonth, mDay );
+                updateResult(selectedYear, selectedMonth, selectedDay);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                TimePredictorActivity.this,android.R.style.Theme_Holo_Dialog_MinWidth, datePickerListener, mYear, mMonth, mDay);
+
+        datePickerDialog.getDatePicker().setCalendarViewShown(false);
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ageMom = 0;
+    }
+
+    public void updateLabel(int year, int monthOfYear, int dayOfMonth) {
+        Calendar myCalendar = Calendar.getInstance();
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        myCalendar.set(year, monthOfYear, dayOfMonth);
         pickerSolarBirthday.setText(sdf.format(myCalendar.getTime()));
 
     }

@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareToGMail(new String[]{"huuquoc09@gmail.com"},"Feedback Baby Gender Predictor","We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                shareToGMail(new String[]{"huuquoc09@gmail.com","ntiendung@gmail.com"},"Feedback Baby Gender Predictor","We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via this email! Thanks you :v");
+//            }
+//        });
 
         btn_PickDay = (ButtonRectangle) findViewById(R.id.btn_pick_day);
         btn_PickDay.setClickable(true);
@@ -103,5 +103,21 @@ public class MainActivity extends AppCompatActivity {
         if (best != null)
             emailIntent.setClassName(best.activityInfo.packageName, best.activityInfo.name);
         getApplication().startActivity(emailIntent);
+    }
+
+    /**
+     * share button
+     * @param view
+     */
+    public void shareApp(View view){
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"huuquoc09@gmail.com","ntiendung@gmail.com"});
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback GenderPredictor App");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.marknguyen.babygenderpredictor" + "\n" + "We welcome any suggestions and feedback you have that will help us improve the products and services we provide to you. Please note that your feedback via huuquoc09@gmailcom.com | ntiendung@gmail.com! Thanks you!");
+
+        startActivity(Intent.createChooser(shareIntent, "Share this app thoughts"));
+
     }
 }

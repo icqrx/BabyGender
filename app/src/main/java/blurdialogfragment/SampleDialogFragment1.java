@@ -38,7 +38,7 @@ public class SampleDialogFragment1 extends BlurDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_fragment1, null);
         // get our html content
-        String htmlAsString = getString(R.string.text_instructor);
+        String htmlAsString = getString(R.string.text_instructor1);
         Spanned htmlAsSpanned = Html.fromHtml(htmlAsString); // used by TextView
 
         TextView label = ((TextView) view.findViewById(R.id.textView));

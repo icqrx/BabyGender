@@ -116,12 +116,6 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:focusable="false" />
 
-            <!--<datepicker.DatePicker-->
-            <!--android:id="@+id/long_date"-->
-            <!--style="@android:style/Theme.Holo.Dialog.MinWidth"-->
-            <!--android:calendarViewShown="false"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
         </LinearLayout>
 
 

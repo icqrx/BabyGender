@@ -136,7 +136,7 @@ public class PickDayActivity extends AppCompatActivity {
                             .duration(700)
                             .playOn(findViewById(R.id.btn_choose_timebaby));
 
-                    Toast.makeText(getBaseContext(), "Please enter input exactly! Maybe you are not over the age of 18?", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.toast_warning, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -241,7 +241,7 @@ public class PickDayActivity extends AppCompatActivity {
                 solar.solarMonth = monthOfYear;
                 solar.solarDay = dayOfMonth;
                 lunarBirthday = LunarSolarConverter.SolarToLunar(solar);
-                tv_lunar_birthday.setText("Lunar birthday: " + lunarBirthday.lunarDay + "/" + lunarBirthday.lunarMonth + "/" + lunarBirthday.lunarYear);
+                tv_lunar_birthday.setText(getString(R.string.text_lunar_birthday_tv) + lunarBirthday.lunarDay + "/" + lunarBirthday.lunarMonth + "/" + lunarBirthday.lunarYear);
                 break;
             }
             case 1: {
@@ -252,7 +252,7 @@ public class PickDayActivity extends AppCompatActivity {
                 solar.solarMonth = monthOfYear;
                 solar.solarDay = dayOfMonth;
                 lunarPregnat = LunarSolarConverter.SolarToLunar(solar);
-                tv_lunar_timebaby.setText("Lunar Conception Date: " + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
+                tv_lunar_timebaby.setText(getString(R.string.text_lunar_conception_date_tv) + lunarPregnat.lunarDay + "/" + lunarPregnat.lunarMonth + "/" + lunarPregnat.lunarYear);
                 break;
             }
         }

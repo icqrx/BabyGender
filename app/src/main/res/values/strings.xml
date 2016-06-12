@@ -99,6 +99,14 @@
     <string name="text_girl">Girl</string>
     <string name="text_boyorgirl">2. Boy or Girl? </string>
     <string name="text_gender_check_results">Please input the mom\'s birthday and the conception date.</string>
+    <string name="toast_warning">Please enter input exactly! Maybe you are not over the age of 18?</string>
+    <string name="text_lunar_birthday_tv">"Lunar birthday: "</string>
+    <string name="text_lunar_conception_date_tv">"Lunar Conception Date: "</string>
+    <string name="text_warning_second_activity">Please check the input again!</string>
+    <string name="text_dialog_cancel">Dismiss</string>
+    <string name="text_to_conceive">"To conceive a "</string>
+    <string name="text_to_concevie2">" baby, try to have sexual intercourse in the following months (Please find detail dates in the calendar bellow): \n"</string>
+    <string name="text_at_the_year">"At the year of "</string>
 
     <string-array name="range_years">
         <item>1</item>

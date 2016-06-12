@@ -154,7 +154,7 @@ public class TimePredictorActivity extends FragmentActivity {
                     YoYo.with(Techniques.Tada)
                             .duration(700)
                             .playOn(findViewById(R.id.long_date));
-                    Toast.makeText(TimePredictorActivity.this, "Please check the input again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TimePredictorActivity.this, R.string.text_warning_second_activity, Toast.LENGTH_SHORT).show();
                     scrollText.setVisibility(View.GONE);
                 }
 
@@ -240,7 +240,7 @@ public class TimePredictorActivity extends FragmentActivity {
         theDialog = new AlertDialog.Builder(this) //
                 .setTitle(title)
                 .setView(dialogView)
-                .setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                .setNeutralButton(R.string.text_dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
@@ -338,7 +338,7 @@ public class TimePredictorActivity extends FragmentActivity {
         else
             gender = "girl";
 
-        tvTimeResults.append("To conceive a " + gender + " baby, try to have sexual intercourse in the following months (Please find detail dates in the calendar bellow): \n");
+        tvTimeResults.append(getString(R.string.text_to_conceive) + gender + getString(R.string.text_to_concevie2));
         for (int i = 1; i <= 12; i++) {
             if (BoyorGirl(tmp_age, i) == temp) {
                 tmp_total = thisYear + tmp_year; // year after + range of years
@@ -379,7 +379,7 @@ public class TimePredictorActivity extends FragmentActivity {
             for(Integer item : value ){
                 tmp_month += item + ", ";
             }
-            tvTimeResults.append("At the year of " + key + ": " + tmp_month.substring(0,tmp_month.length()-2) + "\n");
+            tvTimeResults.append(getString(R.string.text_at_the_year) + key + ": " + tmp_month.substring(0,tmp_month.length()-2) + "\n");
             tmp_month = "";
         }
         return listOfRange;
